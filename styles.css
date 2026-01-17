@@ -137,6 +137,11 @@ a {
     /* Above mobile menu overlay */
 }
 
+.logo-img {
+    height: 40px;
+    width: auto;
+}
+
 .nav-menu {
     display: flex;
     gap: 2rem;
