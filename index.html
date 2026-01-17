@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BUNDL.SHOP | Modern Resale</title>
+    <meta name="description" content="Curated resale bundles and premium drops.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;800&family=JetBrains+Mono:wght@400&display=swap"
+        rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+
+    <!-- Ambience -->
+    <div class="noise-overlay"></div>
+
+    <!-- Interface -->
+    <header class="header">
+        <div class="container nav">
+            <a href="#" class="logo">BUNDL.</a>
+
+            <div class="nav-menu">
+                <a href="index.html" class="nav-link">Shop</a>
+                <a href="archive.html" class="nav-link">Archive</a>
+                <a href="links.html" class="nav-link">Links</a>
+                <a href="socials.html" class="nav-link">Socials</a>
+                <a href="about.html" class="nav-link">About</a>
+            </div>
+
+            <div class="nav-actions">
+                <a href="#" class="nav-link">Account</a>
+                <button class="nav-link" onclick="toggleDrawer()"
+                    style="background:none; border:none; color:inherit; cursor:pointer;">
+                    Cart (<span id="cart-count">0</span>)
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-bg-accent"></div>
+            <div class="hero-content">
+                <h1 class="text-display">Redefine<br>Resale</h1>
+                <p class="text-xl" style="margin-top: 2rem; opacity: 0.8;">Curated archives from the underground.</p>
+                <a href="#shop" class="btn-primary">Explore Collection</a>
+            </div>
+        </section>
+
+        <section id="shop" class="container" style="padding-top: 100px;">
+            <div
+                style="display:flex; justify-content:space-between; align-items:end; margin-bottom: 3rem; padding-bottom: 20px; border-bottom: 1px solid var(--color-border);">
+                <h2 class="text-xl">The Drop [001]</h2>
+                <div class="text-sm font-mono">6 ITEMS AVAILABLE</div>
+            </div>
+
+            <!-- Filters -->
+            <div class="filter-bar" id="filter-bar">
+                <button class="filter-btn active" onclick="filterProducts('All')">All</button>
+                <button class="filter-btn" onclick="filterProducts('Outerwear')">Outerwear</button>
+                <button class="filter-btn" onclick="filterProducts('Tops')">Tops</button>
+                <button class="filter-btn" onclick="filterProducts('Bottoms')">Bottoms</button>
+                <button class="filter-btn" onclick="filterProducts('Footwear')">Footwear</button>
+                <button class="filter-btn" onclick="filterProducts('Accessories')">Accessories</button>
+            </div>
+
+            <div id="product-grid" class="product-grid">
+                <!-- Javascript Injection -->
+            </div>
+        </section>
+    </main>
+
+    <footer style="border-top: 1px solid var(--color-border); padding: 80px 0; margin-top: 80px;">
+        <div class="container" style="text-align: center;">
+            <div style="display: flex; justify-content: center; gap: 2rem; margin-bottom: 2rem; flex-wrap: wrap;">
+                <a href="index.html" class="nav-link">Shop</a>
+                <a href="archive.html" class="nav-link">Archive</a>
+                <a href="links.html" class="nav-link">Links</a>
+                <a href="socials.html" class="nav-link">Socials</a>
+                <a href="about.html" class="nav-link">About</a>
+            </div>
+            <p class="font-mono text-sm" style="opacity: 0.5;">BUNDL.SHOP © 2026. ALL RIGHTS RESERVED.</p>
+        </div>
+    </footer>
+
+    <!-- Cart Drawer -->
+    <div id="cart-drawer-container" class="">
+        <div class="drawer-overlay" onclick="toggleDrawer()"></div>
+        <aside class="drawer">
+            <div class="drawer-header">
+                <h2 class="text-xl">Your Cart</h2>
+                <button class="close-btn" onclick="toggleDrawer()">&times;</button>
+            </div>
+
+            <div class="cart-items" id="cart-items">
+                <!-- Empty State -->
+                <div style="text-align:center; padding: 4rem 0; opacity: 0.5;">
+                    Your bag is empty.
+                </div>
+            </div>
+
+            <div class="cart-footer">
+                <div class="cart-total">
+                    <span>Total</span>
+                    <span id="cart-total">$0.00</span>
+                </div>
+                <button class="btn-checkout">Checkout</button>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Quick View Modal -->
+    <div id="quick-view-modal" class="modal-overlay" onclick="closeModal(event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <!-- Injeced Content -->
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+
+</html>

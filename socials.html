@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connect | BUNDL.SHOP</title>
+    <meta name="description" content="Connect with BUNDL.SHOP on social media and stay updated with the latest drops.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;800&family=JetBrains+Mono:wght@400&display=swap"
+        rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        /* Page-specific styles */
+        .socials-hero {
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding-top: calc(var(--header-height) + 60px);
+            position: relative;
+        }
+
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+            margin-bottom: 5rem;
+        }
+
+        .social-card {
+            background: var(--surface-card);
+            border: 1px solid var(--color-border);
+            padding: 2.5rem;
+            border-radius: 12px;
+            transition: all 0.4s var(--ease-out-expo);
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .social-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.05), transparent);
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .social-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--color-accent);
+            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.15);
+        }
+
+        .social-card:hover::before {
+            opacity: 1;
+        }
+
+        .social-icon {
+            width: 48px;
+            height: 48px;
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(59, 130, 246, 0.1);
+            transition: all 0.3s;
+        }
+
+        .social-card:hover .social-icon {
+            background: var(--color-accent);
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .social-name {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .social-handle {
+            font-family: var(--font-mono);
+            font-size: 0.875rem;
+            color: var(--color-text-muted);
+            margin-bottom: 1rem;
+        }
+
+        .social-description {
+            font-size: 0.9rem;
+            color: var(--color-text-muted);
+            line-height: 1.6;
+        }
+
+        .contact-section {
+            background: var(--surface-card);
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            padding: 3rem;
+            margin-bottom: 5rem;
+            text-align: center;
+        }
+
+        .contact-section h2 {
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-links {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            opacity: 0.7;
+            transition: opacity 0.3s;
+        }
+
+        .contact-link:hover {
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Ambience -->
+    <div class="noise-overlay"></div>
+
+    <!-- Interface -->
+    <header class="header">
+        <div class="container nav">
+            <a href="index.html" class="logo">BUNDL.</a>
+
+            <div class="nav-menu">
+                <a href="index.html" class="nav-link">Shop</a>
+                <a href="archive.html" class="nav-link">Archive</a>
+                <a href="links.html" class="nav-link">Links</a>
+                <a href="socials.html" class="nav-link">Socials</a>
+                <a href="about.html" class="nav-link">About</a>
+            </div>
+
+            <div class="nav-actions">
+                <a href="#" class="nav-link">Account</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="socials-hero">
+            <div class="hero-bg-accent"></div>
+            <div class="hero-content">
+                <h1 class="text-display">Connect</h1>
+                <p class="text-xl" style="margin-top: 2rem; opacity: 0.8;">Join the community. Stay updated.</p>
+            </div>
+        </section>
+
+        <section class="container">
+            <div class="social-grid">
+                <!-- Instagram -->
+                <a href="https://instagram.com/bundl.shop" target="_blank" rel="noopener noreferrer"
+                    class="social-card">
+                    <div class="social-icon">
+                        <i data-lucide="instagram" width="24" height="24"></i>
+                    </div>
+                    <div class="social-name">Instagram</div>
+                    <div class="social-handle">@bundl.corp</div>
+                    <div class="social-description">Daily drops, behind-the-scenes, and curated fits.</div>
+                </a>>
+
+
+                <!-- TikTok -->
+                <a href="https://tiktok.com/@bundl.shop" target="_blank" rel="noopener noreferrer" class="social-card">
+                    <div class="social-icon">
+                        <i data-lucide="video" width="24" height="24"></i>
+                    </div>
+                    <div class="social-name">TikTok</div>
+                    <div class="social-handle">@bundl.shop</div>
+                    <div class="social-description">Styling tips, unboxings, and short-form content.</div>
+                </a>
+
+                <!-- Discord -->
+                <a href="https://discord.gg/bundl" target="_blank" rel="noopener noreferrer" class="social-card">
+                    <div class="social-icon">
+                        <i data-lucide="message-circle" width="24" height="24"></i>
+                    </div>
+                    <div class="social-name">Discord</div>
+                    <div class="social-handle">discord.gg/bundl.corp</div>
+                    <div class="social-description">Join our community, early access, and exclusives.</div>
+                </a>
+
+                <!-- YouTube -->
+                <a href="https://youtube.com/@bundlshop" target="_blank" rel="noopener noreferrer" class="social-card">
+                    <div class="social-icon">
+                        <i data-lucide="youtube" width="24" height="24"></i>
+                    </div>
+                    <div class="social-name">YouTube</div>
+                    <div class="social-handle">@supreme.bundlez</div>
+                    <div class="social-description">Long-form content, vlogs, and documentaries.</div>
+                </a>
+
+                <!-- Newsletter -->
+                <a href="#newsletter" class="social-card">
+                    <div class="social-icon">
+                        <i data-lucide="mail" width="24" height="24"></i>
+                    </div>
+                    <div class="social-name">Newsletter</div>
+                    <div class="social-handle">Weekly Updates</div>
+                    <div class="social-description">Get curated drops straight to your inbox.</div>
+                </a>
+            </div>
+
+            <!-- Contact Section -->
+            <div class="contact-section">
+                <h2 class="text-xl">Get In Touch</h2>
+                <p style="color: var(--color-text-muted); max-width: 600px; margin: 0 auto;">
+                    For business inquiries, collaborations, or general questions.
+                </p>
+                <div class="contact-links">
+                    <a href="mailto:hello@bundl.shop" class="contact-link">
+                        <i data-lucide="mail" width="16" height="16"></i>
+                        hello@bundl.shop
+                    </a>
+                    <a href="mailto:press@bundl.shop" class="contact-link">
+                        <i data-lucide="file-text" width="16" height="16"></i>
+                        press@bundl.shop
+                    </a>
+                    <a href="mailto:support@bundl.shop" class="contact-link">
+                        <i data-lucide="help-circle" width="16" height="16"></i>
+                        support@bundl.shop
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer style="border-top: 1px solid var(--color-border); padding: 80px 0;">
+        <div class="container" style="text-align: center;">
+            <div style="display: flex; justify-content: center; gap: 2rem; margin-bottom: 2rem; flex-wrap: wrap;">
+                <a href="index.html" class="nav-link">Shop</a>
+                <a href="archive.html" class="nav-link">Archive</a>
+                <a href="links.html" class="nav-link">Links</a>
+                <a href="socials.html" class="nav-link">Socials</a>
+                <a href="about.html" class="nav-link">About</a>
+            </div>
+            <p class="font-mono text-sm" style="opacity: 0.5;">BUNDL.SHOP © 2026. ALL RIGHTS RESERVED.</p>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+
+</html>
