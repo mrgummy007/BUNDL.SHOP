@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Links | BUNDL.SHOP</title>
+    <title>Links | BUNDL</title>
     <meta name="description"
-        content="Curated collection of interesting links from the world of fashion, culture, and creativity.">
+        content="Curated collection of MTG resources, tools, and interesting links from around the web.">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -33,6 +33,28 @@
             position: relative;
         }
 
+        .links-hero h1 {
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .links-hero p {
+            opacity: 0;
+            animation: fadeInUp 0.8s ease 0.2s forwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         .category-section {
             margin-bottom: 4rem;
         }
@@ -47,18 +69,28 @@
         }
 
         .category-icon {
-            width: 32px;
-            height: 32px;
+            width: 40px;
+            height: 40px;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: rgba(59, 130, 246, 0.1);
-            border-radius: 8px;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(147, 51, 234, 0.1));
+            border-radius: 10px;
         }
 
         .category-title {
             font-size: 1.5rem;
             font-weight: 600;
+        }
+
+        .category-count {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--color-text-muted);
+            background: var(--surface-card);
+            padding: 0.25rem 0.75rem;
+            border-radius: 999px;
+            margin-left: auto;
         }
 
         .links-grid {
@@ -71,7 +103,7 @@
             background: var(--surface-card);
             border: 1px solid var(--color-border);
             padding: 2rem;
-            border-radius: 12px;
+            border-radius: 16px;
             transition: all 0.3s var(--ease-out-expo);
             position: relative;
             overflow: hidden;
@@ -84,7 +116,7 @@
             left: 0;
             width: 4px;
             height: 100%;
-            background: var(--color-accent);
+            background: linear-gradient(180deg, #3b82f6, #9333ea);
             transform: scaleY(0);
             transition: transform 0.3s var(--ease-out-expo);
         }
@@ -92,6 +124,7 @@
         .link-card:hover {
             transform: translateX(8px);
             border-color: var(--color-accent);
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.1);
         }
 
         .link-card:hover::before {
@@ -132,10 +165,90 @@
             align-items: center;
             gap: 0.5rem;
             opacity: 0.6;
+            transition: opacity 0.3s;
         }
 
         .link-card:hover .link-url {
             opacity: 1;
+            color: var(--color-accent);
+        }
+
+        /* Featured Link */
+        .featured-link {
+            background: linear-gradient(135deg, rgba(147, 51, 234, 0.1), rgba(59, 130, 246, 0.1));
+            border: 1px solid rgba(147, 51, 234, 0.3);
+            padding: 3rem;
+            border-radius: 20px;
+            margin-bottom: 4rem;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            .featured-link {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+        }
+
+        .featured-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(135deg, #9333ea, #3b82f6);
+            padding: 0.5rem 1rem;
+            border-radius: 999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .featured-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+        }
+
+        .featured-desc {
+            color: var(--color-text-muted);
+            line-height: 1.6;
+        }
+
+        /* Search Bar */
+        .search-container {
+            margin-bottom: 3rem;
+        }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background: var(--surface-card);
+            border: 1px solid var(--color-border);
+            border-radius: 999px;
+            padding: 0.75rem 1.5rem;
+            max-width: 500px;
+            margin: 0 auto;
+            transition: border-color 0.3s;
+        }
+
+        .search-bar:focus-within {
+            border-color: var(--color-accent);
+        }
+
+        .search-input {
+            flex: 1;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .search-input::placeholder {
+            color: var(--color-text-muted);
         }
     </style>
 </head>
@@ -151,15 +264,15 @@
             <a href="index.html" class="logo"><img src="logo.png" alt="BUNDL" class="logo-img"></a>
 
             <div class="nav-menu">
-                <a href="index.html" class="nav-link">Shop</a>
-                <a href="archive.html" class="nav-link">Archive</a>
+                <a href="index.html" class="nav-link">Portfolio</a>
+                <a href="mtg.html" class="nav-link">MTG Store</a>
                 <a href="links.html" class="nav-link">Links</a>
                 <a href="socials.html" class="nav-link">Socials</a>
                 <a href="about.html" class="nav-link">About</a>
             </div>
 
             <div class="nav-actions">
-                <a href="#" class="nav-link">Account</a>
+                <a href="socials.html" class="nav-link">Connect</a>
             </div>
         </div>
     </header>
@@ -169,176 +282,247 @@
             <div class="hero-bg-accent"></div>
             <div class="hero-content">
                 <h1 class="text-display">Curated<br>Links</h1>
-                <p class="text-xl" style="margin-top: 2rem; opacity: 0.8;">Inspiration from around the web.</p>
+                <p class="text-xl" style="margin-top: 2rem; opacity: 0.8;">Resources, tools, and inspiration.</p>
             </div>
         </section>
 
         <section class="container" style="padding-top: 60px; padding-bottom: 80px;">
 
-            <!-- Fashion Category -->
-            <div class="category-section">
+            <!-- Search Bar -->
+            <div class="search-container">
+                <div class="search-bar">
+                    <i data-lucide="search" width="20" height="20" style="opacity: 0.5;"></i>
+                    <input type="text" class="search-input" placeholder="Search links..." id="link-search"
+                        onkeyup="filterLinks()">
+                </div>
+            </div>
+
+            <!-- Featured Link -->
+            <div class="featured-link">
+                <div>
+                    <span class="featured-badge">
+                        <i data-lucide="star" width="14" height="14"></i>
+                        Featured
+                    </span>
+                    <h2 class="featured-title">BUNDL MTG Store</h2>
+                    <p class="featured-desc">Check out my curated collection of Magic: The Gathering cards, decks, and
+                        accessories.</p>
+                </div>
+                <a href="mtg.html" class="btn-primary">Visit Store</a>
+            </div>
+
+            <!-- MTG Resources Category -->
+            <div class="category-section" id="mtg-resources">
                 <div class="category-header">
                     <div class="category-icon">
-                        <i data-lucide="shirt" width="18" height="18"></i>
+                        <i data-lucide="wand-2" width="20" height="20"></i>
                     </div>
-                    <h2 class="category-title">Fashion</h2>
+                    <h2 class="category-title">MTG Resources</h2>
+                    <span class="category-count">5 links</span>
                 </div>
                 <div class="links-grid">
-                    <a href="https://grailed.com" target="_blank" rel="noopener noreferrer" class="link-card">
+                    <a href="https://scryfall.com" target="_blank" rel="noopener noreferrer" class="link-card">
+                        <span class="link-tag">Database</span>
+                        <div class="link-title">Scryfall</div>
+                        <div class="link-description">The most powerful Magic card search engine. Find any card
+                            instantly.</div>
+                        <div class="link-url">
+                            <i data-lucide="external-link" width="12" height="12"></i>
+                            scryfall.com
+                        </div>
+                    </a>
+
+                    <a href="https://edhrec.com" target="_blank" rel="noopener noreferrer" class="link-card">
+                        <span class="link-tag">Commander</span>
+                        <div class="link-title">EDHREC</div>
+                        <div class="link-description">Commander deck building recommendations based on community data.
+                        </div>
+                        <div class="link-url">
+                            <i data-lucide="external-link" width="12" height="12"></i>
+                            edhrec.com
+                        </div>
+                    </a>
+
+                    <a href="https://www.moxfield.com" target="_blank" rel="noopener noreferrer" class="link-card">
+                        <span class="link-tag">Deckbuilding</span>
+                        <div class="link-title">Moxfield</div>
+                        <div class="link-description">Modern deck builder with playtest features and collection
+                            tracking.</div>
+                        <div class="link-url">
+                            <i data-lucide="external-link" width="12" height="12"></i>
+                            moxfield.com
+                        </div>
+                    </a>
+
+                    <a href="https://www.mtggoldfish.com" target="_blank" rel="noopener noreferrer" class="link-card">
+                        <span class="link-tag">Prices</span>
+                        <div class="link-title">MTGGoldfish</div>
+                        <div class="link-description">Card prices, deck lists, and metagame analysis for competitive
+                            play.</div>
+                        <div class="link-url">
+                            <i data-lucide="external-link" width="12" height="12"></i>
+                            mtggoldfish.com
+                        </div>
+                    </a>
+
+                    <a href="https://17lands.com" target="_blank" rel="noopener noreferrer" class="link-card">
+                        <span class="link-tag">Limited</span>
+                        <div class="link-title">17Lands</div>
+                        <div class="link-description">Draft and sealed data analysis. Improve your limited game.</div>
+                        <div class="link-url">
+                            <i data-lucide="external-link" width="12" height="12"></i>
+                            17lands.com
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Marketplaces Category -->
+            <div class="category-section" id="marketplaces">
+                <div class="category-header">
+                    <div class="category-icon">
+                        <i data-lucide="shopping-bag" width="20" height="20"></i>
+                    </div>
+                    <h2 class="category-title">Marketplaces</h2>
+                    <span class="category-count">4 links</span>
+                </div>
+                <div class="links-grid">
+                    <a href="https://www.tcgplayer.com" target="_blank" rel="noopener noreferrer" class="link-card">
                         <span class="link-tag">Marketplace</span>
-                        <div class="link-title">Grailed</div>
-                        <div class="link-description">The world's largest curated marketplace for men's clothing.</div>
+                        <div class="link-title">TCGPlayer</div>
+                        <div class="link-description">The largest online marketplace for trading card games.</div>
                         <div class="link-url">
                             <i data-lucide="external-link" width="12" height="12"></i>
-                            grailed.com
+                            tcgplayer.com
                         </div>
                     </a>
 
-                    <a href="https://www.ssense.com" target="_blank" rel="noopener noreferrer" class="link-card">
-                        <span class="link-tag">Retailer</span>
-                        <div class="link-title">SSENSE</div>
-                        <div class="link-description">Luxury and streetwear fashion from emerging and established
-                            designers.</div>
+                    <a href="https://www.cardmarket.com" target="_blank" rel="noopener noreferrer" class="link-card">
+                        <span class="link-tag">Europe</span>
+                        <div class="link-title">Cardmarket</div>
+                        <div class="link-description">Europe's largest trading card marketplace with great prices.</div>
                         <div class="link-url">
                             <i data-lucide="external-link" width="12" height="12"></i>
-                            ssense.com
+                            cardmarket.com
                         </div>
                     </a>
 
-                    <a href="https://www.highsnobiety.com" target="_blank" rel="noopener noreferrer" class="link-card">
-                        <span class="link-tag">Editorial</span>
-                        <div class="link-title">Highsnobiety</div>
-                        <div class="link-description">Fashion, culture, and sneaker news from around the globe.</div>
-                        <div class="link-url">
-                            <i data-lucide="external-link" width="12" height="12"></i>
-                            highsnobiety.com
+                    <a href="https://www.cardsphere.com" target="_blank" rel="noopener noreferrer" class="link-card">
+                        <span class="link-tag">Trading</span>
+                        <div class="link-title">Cardsphere</div>
+                        <div class="link-description">Trading platform that makes sending and receiving cards easy.
                         </div>
-                    </a>
-                </div>
-            </div>
-
-            <!-- Culture Category -->
-            <div class="category-section">
-                <div class="category-header">
-                    <div class="category-icon">
-                        <i data-lucide="sparkles" width="18" height="18"></i>
-                    </div>
-                    <h2 class="category-title">Culture</h2>
-                </div>
-                <div class="links-grid">
-                    <a href="https://www.complex.com" target="_blank" rel="noopener noreferrer" class="link-card">
-                        <span class="link-tag">Media</span>
-                        <div class="link-title">Complex</div>
-                        <div class="link-description">Youth culture, sneakers, music, and entertainment.</div>
                         <div class="link-url">
                             <i data-lucide="external-link" width="12" height="12"></i>
-                            complex.com
+                            cardsphere.com
                         </div>
                     </a>
 
-                    <a href="https://hypebeast.com" target="_blank" rel="noopener noreferrer" class="link-card">
-                        <span class="link-tag">Media</span>
-                        <div class="link-title">Hypebeast</div>
-                        <div class="link-description">Latest trends in fashion, art, design, and music.</div>
+                    <a href="https://www.ebay.com" target="_blank" rel="noopener noreferrer" class="link-card">
+                        <span class="link-tag">Auction</span>
+                        <div class="link-title">eBay</div>
+                        <div class="link-description">Find deals on rare cards and sealed product at auction.</div>
                         <div class="link-url">
                             <i data-lucide="external-link" width="12" height="12"></i>
-                            hypebeast.com
-                        </div>
-                    </a>
-
-                    <a href="https://www.dazeddigital.com" target="_blank" rel="noopener noreferrer" class="link-card">
-                        <span class="link-tag">Editorial</span>
-                        <div class="link-title">Dazed Digital</div>
-                        <div class="link-description">Independent fashion, culture, and arts magazine.</div>
-                        <div class="link-url">
-                            <i data-lucide="external-link" width="12" height="12"></i>
-                            dazeddigital.com
+                            ebay.com
                         </div>
                     </a>
                 </div>
             </div>
 
-            <!-- Resources Category -->
-            <div class="category-section">
+            <!-- Content Creators Category -->
+            <div class="category-section" id="creators">
                 <div class="category-header">
                     <div class="category-icon">
-                        <i data-lucide="bookmark" width="18" height="18"></i>
+                        <i data-lucide="youtube" width="20" height="20"></i>
                     </div>
-                    <h2 class="category-title">Resources</h2>
+                    <h2 class="category-title">Content Creators</h2>
+                    <span class="category-count">4 links</span>
                 </div>
                 <div class="links-grid">
-                    <a href="https://www.reddit.com/r/streetwear" target="_blank" rel="noopener noreferrer"
+                    <a href="https://www.youtube.com/@commandzone" target="_blank" rel="noopener noreferrer"
+                        class="link-card">
+                        <span class="link-tag">YouTube</span>
+                        <div class="link-title">The Command Zone</div>
+                        <div class="link-description">Premier Commander content with Game Knights and deck techs.</div>
+                        <div class="link-url">
+                            <i data-lucide="external-link" width="12" height="12"></i>
+                            youtube.com
+                        </div>
+                    </a>
+
+                    <a href="https://www.youtube.com/@tolaboratorymaniac" target="_blank" rel="noopener noreferrer"
+                        class="link-card">
+                        <span class="link-tag">YouTube</span>
+                        <div class="link-title">Tolarian Community College</div>
+                        <div class="link-description">Product reviews, tutorials, and the famous Professor.</div>
+                        <div class="link-url">
+                            <i data-lucide="external-link" width="12" height="12"></i>
+                            youtube.com
+                        </div>
+                    </a>
+
+                    <a href="https://www.youtube.com/@mtggoldfish" target="_blank" rel="noopener noreferrer"
+                        class="link-card">
+                        <span class="link-tag">YouTube</span>
+                        <div class="link-title">MTGGoldfish</div>
+                        <div class="link-description">Budget decks, against the odds, and gameplay videos.</div>
+                        <div class="link-url">
+                            <i data-lucide="external-link" width="12" height="12"></i>
+                            youtube.com
+                        </div>
+                    </a>
+
+                    <a href="https://www.reddit.com/r/magictcg" target="_blank" rel="noopener noreferrer"
                         class="link-card">
                         <span class="link-tag">Community</span>
-                        <div class="link-title">r/streetwear</div>
-                        <div class="link-description">Reddit's largest streetwear community for discussion and
-                            inspiration.</div>
+                        <div class="link-title">r/magicTCG</div>
+                        <div class="link-description">Reddit's main Magic community for news and discussion.</div>
                         <div class="link-url">
                             <i data-lucide="external-link" width="12" height="12"></i>
-                            reddit.com/r/streetwear
-                        </div>
-                    </a>
-
-                    <a href="https://www.depop.com" target="_blank" rel="noopener noreferrer" class="link-card">
-                        <span class="link-tag">Marketplace</span>
-                        <div class="link-title">Depop</div>
-                        <div class="link-description">Social shopping app for vintage and secondhand fashion.</div>
-                        <div class="link-url">
-                            <i data-lucide="external-link" width="12" height="12"></i>
-                            depop.com
-                        </div>
-                    </a>
-
-                    <a href="https://archive.org" target="_blank" rel="noopener noreferrer" class="link-card">
-                        <span class="link-tag">Archive</span>
-                        <div class="link-title">Internet Archive</div>
-                        <div class="link-description">Digital library of websites, books, audio, and more.</div>
-                        <div class="link-url">
-                            <i data-lucide="external-link" width="12" height="12"></i>
-                            archive.org
+                            reddit.com
                         </div>
                     </a>
                 </div>
             </div>
 
-            <!-- Inspiration Category -->
-            <div class="category-section">
+            <!-- Tools Category -->
+            <div class="category-section" id="tools">
                 <div class="category-header">
                     <div class="category-icon">
-                        <i data-lucide="eye" width="18" height="18"></i>
+                        <i data-lucide="wrench" width="20" height="20"></i>
                     </div>
-                    <h2 class="category-title">Inspiration</h2>
+                    <h2 class="category-title">Tools & Utilities</h2>
+                    <span class="category-count">3 links</span>
                 </div>
                 <div class="links-grid">
-                    <a href="https://www.pinterest.com" target="_blank" rel="noopener noreferrer" class="link-card">
-                        <span class="link-tag">Visual</span>
-                        <div class="link-title">Pinterest</div>
-                        <div class="link-description">Visual discovery platform for creative ideas and inspiration.
-                        </div>
+                    <a href="https://archidekt.com" target="_blank" rel="noopener noreferrer" class="link-card">
+                        <span class="link-tag">Deckbuilder</span>
+                        <div class="link-title">Archidekt</div>
+                        <div class="link-description">Visual deck builder with statistics and playtesting.</div>
                         <div class="link-url">
                             <i data-lucide="external-link" width="12" height="12"></i>
-                            pinterest.com
+                            archidekt.com
                         </div>
                     </a>
 
-                    <a href="https://www.are.na" target="_blank" rel="noopener noreferrer" class="link-card">
-                        <span class="link-tag">Curation</span>
-                        <div class="link-title">Are.na</div>
-                        <div class="link-description">Platform for collaborative research and moodboarding.</div>
+                    <a href="https://deckstats.net" target="_blank" rel="noopener noreferrer" class="link-card">
+                        <span class="link-tag">Statistics</span>
+                        <div class="link-title">Deckstats</div>
+                        <div class="link-description">Detailed deck statistics and mana curve analysis.</div>
                         <div class="link-url">
                             <i data-lucide="external-link" width="12" height="12"></i>
-                            are.na
+                            deckstats.net
                         </div>
                     </a>
 
-                    <a href="https://www.behance.net" target="_blank" rel="noopener noreferrer" class="link-card">
-                        <span class="link-tag">Portfolio</span>
-                        <div class="link-title">Behance</div>
-                        <div class="link-description">Showcase and discover creative work from designers worldwide.
-                        </div>
+                    <a href="https://cubecobra.com" target="_blank" rel="noopener noreferrer" class="link-card">
+                        <span class="link-tag">Cube</span>
+                        <div class="link-title">Cube Cobra</div>
+                        <div class="link-description">Build, manage, and draft your custom cubes online.</div>
                         <div class="link-url">
                             <i data-lucide="external-link" width="12" height="12"></i>
-                            behance.net
+                            cubecobra.com
                         </div>
                     </a>
                 </div>
@@ -350,8 +534,8 @@
     <footer style="border-top: 1px solid var(--color-border); padding: 80px 0;">
         <div class="container" style="text-align: center;">
             <div style="display: flex; justify-content: center; gap: 2rem; margin-bottom: 2rem; flex-wrap: wrap;">
-                <a href="index.html" class="nav-link">Shop</a>
-                <a href="archive.html" class="nav-link">Archive</a>
+                <a href="index.html" class="nav-link">Portfolio</a>
+                <a href="mtg.html" class="nav-link">MTG Store</a>
                 <a href="links.html" class="nav-link">Links</a>
                 <a href="socials.html" class="nav-link">Socials</a>
                 <a href="about.html" class="nav-link">About</a>
@@ -362,6 +546,23 @@
 
     <script>
         lucide.createIcons();
+
+        function filterLinks() {
+            const searchValue = document.getElementById('link-search').value.toLowerCase();
+            const cards = document.querySelectorAll('.link-card');
+
+            cards.forEach(card => {
+                const title = card.querySelector('.link-title').textContent.toLowerCase();
+                const description = card.querySelector('.link-description').textContent.toLowerCase();
+                const tag = card.querySelector('.link-tag').textContent.toLowerCase();
+
+                if (title.includes(searchValue) || description.includes(searchValue) || tag.includes(searchValue)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
     </script>
 </body>
 

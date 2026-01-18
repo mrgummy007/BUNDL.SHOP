@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MTG Store | BUNDL.SHOP</title>
+    <meta name="description"
+        content="Magic: The Gathering cards, decks, and accessories. Commander decks, booster boxes, and premium singles.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;800&family=JetBrains+Mono:wght@400&display=swap"
+        rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        /* MTG-specific styles */
+        .mtg-hero {
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding-top: var(--header-height);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mtg-hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('images/mtg_hero.png') center/cover no-repeat;
+            opacity: 0.4;
+            z-index: 0;
+        }
+
+        .mtg-hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, rgba(10, 10, 10, 0.3) 0%, rgba(10, 10, 10, 0.9) 100%);
+            z-index: 1;
+        }
+
+        .mtg-hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            padding: 0 20px;
+        }
+
+        .mtg-title {
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            font-weight: 800;
+            line-height: 1;
+            letter-spacing: -0.03em;
+            background: linear-gradient(135deg, #9333ea, #3b82f6, #ef4444);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1.5rem;
+        }
+
+        .mtg-subtitle {
+            font-size: 1.25rem;
+            color: var(--color-text-muted);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        /* Mana Colors Accent */
+        .mana-bar {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .mana-orb {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .mana-orb:hover {
+            transform: scale(1.2);
+        }
+
+        .mana-white {
+            background: linear-gradient(135deg, #f5f5dc, #fffacd);
+            color: #333;
+            box-shadow: 0 0 20px rgba(255, 250, 205, 0.5);
+        }
+
+        .mana-blue {
+            background: linear-gradient(135deg, #1e40af, #3b82f6);
+            color: #fff;
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+        }
+
+        .mana-black {
+            background: linear-gradient(135deg, #1f1f1f, #4a4a4a);
+            color: #fff;
+            box-shadow: 0 0 20px rgba(100, 100, 100, 0.5);
+        }
+
+        .mana-red {
+            background: linear-gradient(135deg, #b91c1c, #ef4444);
+            color: #fff;
+            box-shadow: 0 0 20px rgba(239, 68, 68, 0.5);
+        }
+
+        .mana-green {
+            background: linear-gradient(135deg, #166534, #22c55e);
+            color: #fff;
+            box-shadow: 0 0 20px rgba(34, 197, 94, 0.5);
+        }
+
+        /* Product Categories */
+        .category-pills {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+
+        .category-pill {
+            background: transparent;
+            border: 1px solid var(--color-border);
+            color: var(--color-text-muted);
+            padding: 0.75rem 1.5rem;
+            border-radius: 999px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .category-pill:hover,
+        .category-pill.active {
+            background: linear-gradient(135deg, #9333ea, #3b82f6);
+            border-color: transparent;
+            color: white;
+        }
+
+        /* MTG Product Card */
+        .mtg-product-card {
+            background: var(--surface-card);
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.4s var(--ease-out-expo);
+            cursor: pointer;
+        }
+
+        .mtg-product-card:hover {
+            transform: translateY(-8px);
+            border-color: #9333ea;
+            box-shadow: 0 20px 40px rgba(147, 51, 234, 0.2);
+        }
+
+        .mtg-product-image {
+            aspect-ratio: 1;
+            overflow: hidden;
+            background: #1a1a1a;
+        }
+
+        .mtg-product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s var(--ease-out-expo);
+        }
+
+        .mtg-product-card:hover .mtg-product-image img {
+            transform: scale(1.1);
+        }
+
+        .mtg-product-info {
+            padding: 1.5rem;
+        }
+
+        .mtg-product-category {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: #9333ea;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+        }
+
+        .mtg-product-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            line-height: 1.3;
+        }
+
+        .mtg-product-price {
+            font-family: var(--font-mono);
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #22c55e;
+        }
+
+        .mtg-product-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--color-border);
+        }
+
+        .stock-badge {
+            font-size: 0.75rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 999px;
+            font-family: var(--font-mono);
+        }
+
+        .in-stock {
+            background: rgba(34, 197, 94, 0.1);
+            color: #22c55e;
+        }
+
+        .low-stock {
+            background: rgba(234, 179, 8, 0.1);
+            color: #eab308;
+        }
+
+        .add-to-cart-btn {
+            background: white;
+            color: black;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 999px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .add-to-cart-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
+        }
+
+        /* Featured Section */
+        .featured-section {
+            background: linear-gradient(135deg, rgba(147, 51, 234, 0.1), rgba(59, 130, 246, 0.1));
+            border: 1px solid var(--color-border);
+            border-radius: 16px;
+            padding: 3rem;
+            margin-bottom: 4rem;
+            text-align: center;
+        }
+
+        .featured-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .featured-description {
+            color: var(--color-text-muted);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        /* Store Controls */
+        .store-controls {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .search-box {
+            flex: 1;
+            min-width: 250px;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: var(--surface-card);
+            border: 1px solid var(--color-border);
+            border-radius: 999px;
+            padding: 0.75rem 1.25rem;
+            transition: border-color 0.3s;
+        }
+
+        .search-box:focus-within {
+            border-color: var(--color-accent);
+        }
+
+        .search-box input {
+            flex: 1;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .search-box input::placeholder {
+            color: var(--color-text-muted);
+        }
+
+        .sort-controls select {
+            background: var(--surface-card);
+            border: 1px solid var(--color-border);
+            color: white;
+            padding: 0.75rem 1.25rem;
+            border-radius: 999px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .sort-controls select:hover,
+        .sort-controls select:focus {
+            border-color: var(--color-accent);
+        }
+
+        .store-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 2rem;
+            padding-bottom: 1.25rem;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        /* Footer Classes */
+        .site-footer {
+            border-top: 1px solid var(--color-border);
+            padding: 80px 0;
+        }
+
+        .footer-content {
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-copyright {
+            opacity: 0.5;
+        }
+
+        /* Cart Button */
+        .cart-btn {
+            background: none;
+            border: none;
+            color: inherit;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: inherit;
+        }
+
+        /* Featured Section Container */
+        .featured-container {
+            padding-top: 80px;
+        }
+
+        .products-section {
+            padding-bottom: 100px;
+        }
+
+        .btn-no-margin {
+            margin-top: 0;
+        }
+
+        /* Modal Image */
+        .modal-image-wrapper {
+            background: #1a1a1a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+
+        .modal-image-wrapper img {
+            max-width: 100%;
+            max-height: 400px;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+
+        .modal-details {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Empty cart state */
+        .empty-cart {
+            text-align: center;
+            padding: 4rem 0;
+            opacity: 0.5;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Ambience -->
+    <div class="noise-overlay"></div>
+
+    <!-- Interface -->
+    <header class="header">
+        <div class="container nav">
+            <a href="index.html" class="logo"><img src="logo.png" alt="BUNDL" class="logo-img"></a>
+
+            <div class="nav-menu">
+                <a href="index.html" class="nav-link">Portfolio</a>
+                <a href="mtg.html" class="nav-link">MTG Store</a>
+                <a href="links.html" class="nav-link">Links</a>
+                <a href="socials.html" class="nav-link">Socials</a>
+                <a href="about.html" class="nav-link">About</a>
+            </div>
+
+            <div class="nav-actions">
+                <button class="nav-link" onclick="toggleDrawer()"
+                    style="background:none; border:none; color:inherit; cursor:pointer;">
+                    Cart (<span id="cart-count">0</span>)
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="mtg-hero">
+            <div class="mtg-hero-bg"></div>
+            <div class="mtg-hero-overlay"></div>
+            <div class="mtg-hero-content">
+                <h1 class="mtg-title">Magic: The Gathering</h1>
+                <p class="mtg-subtitle">Premium cards, sealed products, and accessories for players and collectors.</p>
+                <a href="#products" class="btn-primary">Browse Collection</a>
+
+                <div class="mana-bar">
+                    <div class="mana-orb mana-white" title="White">W</div>
+                    <div class="mana-orb mana-blue" title="Blue">U</div>
+                    <div class="mana-orb mana-black" title="Black">B</div>
+                    <div class="mana-orb mana-red" title="Red">R</div>
+                    <div class="mana-orb mana-green" title="Green">G</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Section -->
+        <section class="container" style="padding-top: 80px;">
+            <div class="featured-section">
+                <h2 class="featured-title">✨ New Arrivals</h2>
+                <p class="featured-description">
+                    Fresh stock just landed! Check out the latest Commander decks, booster boxes, and premium singles
+                    from recent sets.
+                </p>
+                <a href="#products" class="btn-primary" style="margin-top: 0;">Shop New Arrivals</a>
+            </div>
+        </section>
+
+        <!-- Products Section -->
+        <section id="products" class="container" style="padding-bottom: 100px;">
+            <!-- Search and Sort Bar -->
+            <div class="store-controls">
+                <div class="search-box">
+                    <i data-lucide="search" width="18" height="18"></i>
+                    <input type="text" id="product-search" placeholder="Search products..." onkeyup="searchProducts()">
+                </div>
+                <div class="sort-controls">
+                    <select id="sort-select" onchange="sortProducts()" aria-label="Sort products">
+                        <option value="default">Sort by</option>
+                        <option value="price-low">Price: Low to High</option>
+                        <option value="price-high">Price: High to Low</option>
+                        <option value="name-asc">Name: A-Z</option>
+                        <option value="name-desc">Name: Z-A</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="store-header">
+                <h2 class="text-xl">The Collection</h2>
+                <div class="text-sm font-mono" id="product-count">15 PRODUCTS</div>
+            </div>
+
+            <!-- Category Filters -->
+            <div class="category-pills" id="mtg-filters">
+                <button class="category-pill active" onclick="filterMTG('All')">All</button>
+                <button class="category-pill" onclick="filterMTG('Commander')">Commander</button>
+                <button class="category-pill" onclick="filterMTG('Booster')">Boosters</button>
+                <button class="category-pill" onclick="filterMTG('Singles')">Singles</button>
+                <button class="category-pill" onclick="filterMTG('Accessories')">Accessories</button>
+            </div>
+
+            <!-- Product Grid -->
+            <div id="mtg-product-grid" class="product-grid">
+                <!-- JavaScript Injection -->
+            </div>
+        </section>
+    </main>
+
+    <footer style="border-top: 1px solid var(--color-border); padding: 80px 0; margin-top: 80px;">
+        <div class="container" style="text-align: center;">
+            <div style="display: flex; justify-content: center; gap: 2rem; margin-bottom: 2rem; flex-wrap: wrap;">
+                <a href="index.html" class="nav-link">Portfolio</a>
+                <a href="mtg.html" class="nav-link">MTG Store</a>
+                <a href="links.html" class="nav-link">Links</a>
+                <a href="socials.html" class="nav-link">Socials</a>
+                <a href="about.html" class="nav-link">About</a>
+            </div>
+            <p class="font-mono text-sm" style="opacity: 0.5;">BUNDL.SHOP © 2026. ALL RIGHTS RESERVED.</p>
+        </div>
+    </footer>
+
+    <!-- Cart Drawer -->
+    <div id="cart-drawer-container" class="">
+        <div class="drawer-overlay" onclick="toggleDrawer()"></div>
+        <aside class="drawer">
+            <div class="drawer-header">
+                <h2 class="text-xl">Your Cart</h2>
+                <button class="close-btn" onclick="toggleDrawer()">&times;</button>
+            </div>
+
+            <div class="cart-items" id="cart-items">
+                <div style="text-align:center; padding: 4rem 0; opacity: 0.5;">
+                    Your cart is empty.
+                </div>
+            </div>
+
+            <div class="cart-footer">
+                <div class="cart-total">
+                    <span>Total</span>
+                    <span id="cart-total">$0.00</span>
+                </div>
+                <button class="btn-checkout">Checkout</button>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Quick View Modal -->
+    <div id="quick-view-modal" class="modal-overlay" onclick="closeModal(event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <!-- Injected Content -->
+        </div>
+    </div>
+
+    <script src="mtg-app.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+
+</html>

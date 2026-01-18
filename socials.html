@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Connect | BUNDL.SHOP</title>
-    <meta name="description" content="Connect with BUNDL.SHOP on social media and stay updated with the latest drops.">
+    <title>Connect | BUNDL</title>
+    <meta name="description" content="Connect with BUNDL on social media. Join the community and stay updated.">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -32,6 +32,29 @@
             position: relative;
         }
 
+        .socials-hero h1 {
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .socials-hero p {
+            opacity: 0;
+            animation: fadeInUp 0.8s ease 0.2s forwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Social Grid */
         .social-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -44,7 +67,7 @@
             background: var(--surface-card);
             border: 1px solid var(--color-border);
             padding: 2.5rem;
-            border-radius: 12px;
+            border-radius: 16px;
             transition: all 0.4s var(--ease-out-expo);
             position: relative;
             overflow: hidden;
@@ -74,20 +97,48 @@
         }
 
         .social-icon {
-            width: 48px;
-            height: 48px;
+            width: 64px;
+            height: 64px;
             margin: 0 auto 1.5rem;
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 50%;
-            background: rgba(59, 130, 246, 0.1);
+            border-radius: 16px;
             transition: all 0.3s;
+            font-size: 2rem;
         }
 
         .social-card:hover .social-icon {
-            background: var(--color-accent);
             transform: scale(1.1) rotate(5deg);
+        }
+
+        /* Platform-specific colors */
+        .icon-instagram {
+            background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+        }
+
+        .icon-discord {
+            background: linear-gradient(135deg, #5865F2, #7289DA);
+        }
+
+        .icon-youtube {
+            background: linear-gradient(135deg, #FF0000, #CC0000);
+        }
+
+        .icon-twitter {
+            background: linear-gradient(135deg, #1DA1F2, #0d8bd9);
+        }
+
+        .icon-twitch {
+            background: linear-gradient(135deg, #9146FF, #772CE8);
+        }
+
+        .icon-tiktok {
+            background: linear-gradient(135deg, #ff0050, #00f2ea);
+        }
+
+        .icon-email {
+            background: linear-gradient(135deg, #3b82f6, #9333ea);
         }
 
         .social-name {
@@ -109,39 +160,204 @@
             line-height: 1.6;
         }
 
+        .social-stats {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--color-border);
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-weight: 700;
+            font-size: 1.25rem;
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            color: var(--color-text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Contact Section */
         .contact-section {
-            background: var(--surface-card);
+            background: linear-gradient(135deg, rgba(147, 51, 234, 0.1), rgba(59, 130, 246, 0.1));
             border: 1px solid var(--color-border);
-            border-radius: 12px;
-            padding: 3rem;
+            border-radius: 20px;
+            padding: 4rem;
             margin-bottom: 5rem;
             text-align: center;
         }
 
         .contact-section h2 {
-            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            margin-bottom: 1rem;
         }
 
-        .contact-links {
+        .contact-section p {
+            color: var(--color-text-muted);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .contact-card {
+            background: var(--surface-card);
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .contact-card:hover {
+            border-color: var(--color-accent);
+            transform: translateY(-4px);
+        }
+
+        .contact-icon {
+            width: 48px;
+            height: 48px;
+            margin: 0 auto 1rem;
             display: flex;
-            gap: 2rem;
+            align-items: center;
             justify-content: center;
-            flex-wrap: wrap;
-            margin-top: 2rem;
+            background: rgba(59, 130, 246, 0.1);
+            border-radius: 12px;
         }
 
-        .contact-link {
+        .contact-type {
+            font-size: 0.875rem;
+            color: var(--color-text-muted);
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-value {
+            font-weight: 600;
+            color: var(--color-accent);
+        }
+
+        /* Newsletter Section */
+        .newsletter-section {
+            background: var(--surface-card);
+            border: 1px solid var(--color-border);
+            border-radius: 20px;
+            padding: 4rem;
+            margin-bottom: 5rem;
+            text-align: center;
+        }
+
+        .newsletter-section h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .newsletter-section p {
+            color: var(--color-text-muted);
+            max-width: 500px;
+            margin: 0 auto 2rem;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 1rem;
+            max-width: 500px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .newsletter-input {
+            flex: 1;
+            min-width: 250px;
+            background: var(--color-bg);
+            border: 1px solid var(--color-border);
+            border-radius: 999px;
+            padding: 1rem 1.5rem;
+            color: white;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .newsletter-input:focus {
+            border-color: var(--color-accent);
+        }
+
+        .newsletter-input::placeholder {
+            color: var(--color-text-muted);
+        }
+
+        .newsletter-btn {
+            background: white;
+            color: black;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 999px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .newsletter-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(255, 255, 255, 0.2);
+        }
+
+        .newsletter-perks {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .perk-item {
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            font-family: var(--font-mono);
-            font-size: 0.9rem;
-            opacity: 0.7;
-            transition: opacity 0.3s;
+            color: var(--color-text-muted);
+            font-size: 0.875rem;
         }
 
-        .contact-link:hover {
-            opacity: 1;
+        /* Quick Links */
+        .quick-actions {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 5rem;
+        }
+
+        .quick-action-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: var(--surface-card);
+            border: 1px solid var(--color-border);
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .quick-action-btn:hover {
+            border-color: var(--color-accent);
+            background: rgba(59, 130, 246, 0.05);
+            transform: translateY(-2px);
         }
     </style>
 </head>
@@ -157,15 +373,15 @@
             <a href="index.html" class="logo"><img src="logo.png" alt="BUNDL" class="logo-img"></a>
 
             <div class="nav-menu">
-                <a href="index.html" class="nav-link">Shop</a>
-                <a href="archive.html" class="nav-link">Archive</a>
+                <a href="index.html" class="nav-link">Portfolio</a>
+                <a href="mtg.html" class="nav-link">MTG Store</a>
                 <a href="links.html" class="nav-link">Links</a>
                 <a href="socials.html" class="nav-link">Socials</a>
                 <a href="about.html" class="nav-link">About</a>
             </div>
 
             <div class="nav-actions">
-                <a href="#" class="nav-link">Account</a>
+                <a href="#contact" class="nav-link">Contact</a>
             </div>
         </div>
     </header>
@@ -174,73 +390,141 @@
         <section class="socials-hero">
             <div class="hero-bg-accent"></div>
             <div class="hero-content">
-                <h1 class="text-display">Connect</h1>
-                <p class="text-xl" style="margin-top: 2rem; opacity: 0.8;">Join the community. Stay updated.</p>
+                <h1 class="text-display">Let's<br>Connect</h1>
+                <p class="text-xl" style="margin-top: 2rem; opacity: 0.8;">Find me on your favorite platforms.</p>
             </div>
         </section>
 
         <section class="container">
+            <!-- Quick Actions -->
+            <div class="quick-actions">
+                <a href="mtg.html" class="quick-action-btn">
+                    <i data-lucide="shopping-bag" width="20" height="20"></i>
+                    Visit MTG Store
+                </a>
+                <a href="links.html" class="quick-action-btn">
+                    <i data-lucide="bookmark" width="20" height="20"></i>
+                    Browse Links
+                </a>
+                <a href="about.html" class="quick-action-btn">
+                    <i data-lucide="user" width="20" height="20"></i>
+                    About Me
+                </a>
+            </div>
+
+            <!-- Social Grid -->
             <div class="social-grid">
                 <!-- Instagram -->
-                <a href="https://instagram.com/bundl.shop" target="_blank" rel="noopener noreferrer"
+                <a href="https://instagram.com/bundl.corp" target="_blank" rel="noopener noreferrer"
                     class="social-card">
-                    <div class="social-icon">
-                        <i data-lucide="instagram" width="24" height="24"></i>
+                    <div class="social-icon icon-instagram">
+                        <i data-lucide="instagram" width="28" height="28" style="color: white;"></i>
                     </div>
                     <div class="social-name">Instagram</div>
                     <div class="social-handle">@bundl.corp</div>
-                    <div class="social-description">Daily drops, behind-the-scenes, and curated fits.</div>
+                    <div class="social-description">Daily MTG content, card pulls, and deck showcases.</div>
                 </a>
 
                 <!-- Discord -->
                 <a href="https://discord.gg/bundl" target="_blank" rel="noopener noreferrer" class="social-card">
-                    <div class="social-icon">
-                        <i data-lucide="message-circle" width="24" height="24"></i>
+                    <div class="social-icon icon-discord">
+                        <i data-lucide="message-circle" width="28" height="28" style="color: white;"></i>
                     </div>
                     <div class="social-name">Discord</div>
-                    <div class="social-handle">discord.gg/bundl.corp</div>
-                    <div class="social-description">Join our community, early access, and exclusives.</div>
+                    <div class="social-handle">discord.gg/bundl</div>
+                    <div class="social-description">Join the community for trades, games, and chat.</div>
                 </a>
 
                 <!-- YouTube -->
-                <a href="https://youtube.com/@bundlshop" target="_blank" rel="noopener noreferrer" class="social-card">
-                    <div class="social-icon">
-                        <i data-lucide="youtube" width="24" height="24"></i>
+                <a href="https://youtube.com/@bundl" target="_blank" rel="noopener noreferrer" class="social-card">
+                    <div class="social-icon icon-youtube">
+                        <i data-lucide="youtube" width="28" height="28" style="color: white;"></i>
                     </div>
                     <div class="social-name">YouTube</div>
-                    <div class="social-handle">@supreme.bundlez</div>
-                    <div class="social-description">Long-form content, vlogs, and documentaries.</div>
+                    <div class="social-handle">@bundl</div>
+                    <div class="social-description">Deck techs, gameplay, and MTG content.</div>
                 </a>
 
-                <!-- Newsletter -->
-                <a href="#newsletter" class="social-card">
-                    <div class="social-icon">
-                        <i data-lucide="mail" width="24" height="24"></i>
+                <!-- Twitter/X -->
+                <a href="https://twitter.com/bundlshop" target="_blank" rel="noopener noreferrer" class="social-card">
+                    <div class="social-icon icon-twitter">
+                        <i data-lucide="twitter" width="28" height="28" style="color: white;"></i>
                     </div>
-                    <div class="social-name">Newsletter</div>
-                    <div class="social-handle">Weekly Updates</div>
-                    <div class="social-description">Get curated drops straight to your inbox.</div>
+                    <div class="social-name">Twitter / X</div>
+                    <div class="social-handle">@bundlshop</div>
+                    <div class="social-description">Quick updates, hot takes, and community interaction.</div>
+                </a>
+
+                <!-- Twitch -->
+                <a href="https://twitch.tv/bundl" target="_blank" rel="noopener noreferrer" class="social-card">
+                    <div class="social-icon icon-twitch">
+                        <i data-lucide="tv" width="28" height="28" style="color: white;"></i>
+                    </div>
+                    <div class="social-name">Twitch</div>
+                    <div class="social-handle">twitch.tv/bundl</div>
+                    <div class="social-description">Live MTG Arena streams and pack openings.</div>
+                </a>
+
+                <!-- TikTok -->
+                <a href="https://tiktok.com/@bundl" target="_blank" rel="noopener noreferrer" class="social-card">
+                    <div class="social-icon icon-tiktok">
+                        <i data-lucide="music" width="28" height="28" style="color: white;"></i>
+                    </div>
+                    <div class="social-name">TikTok</div>
+                    <div class="social-handle">@bundl</div>
+                    <div class="social-description">Short-form MTG content and card showcases.</div>
                 </a>
             </div>
 
+            <!-- Newsletter Section -->
+            <div class="newsletter-section">
+                <h2>📬 Join the Newsletter</h2>
+                <p>Get exclusive deals, new drop announcements, and MTG content delivered to your inbox.</p>
+                <form class="newsletter-form" onsubmit="handleNewsletterSubmit(event)">
+                    <input type="email" class="newsletter-input" placeholder="your@email.com" required>
+                    <button type="submit" class="newsletter-btn">Subscribe</button>
+                </form>
+                <div class="newsletter-perks">
+                    <div class="perk-item">
+                        <i data-lucide="check-circle" width="16" height="16" style="color: #22c55e;"></i>
+                        Weekly updates
+                    </div>
+                    <div class="perk-item">
+                        <i data-lucide="check-circle" width="16" height="16" style="color: #22c55e;"></i>
+                        Early access to drops
+                    </div>
+                    <div class="perk-item">
+                        <i data-lucide="check-circle" width="16" height="16" style="color: #22c55e;"></i>
+                        Exclusive discounts
+                    </div>
+                </div>
+            </div>
+
             <!-- Contact Section -->
-            <div class="contact-section">
-                <h2 class="text-xl">Get In Touch</h2>
-                <p style="color: var(--color-text-muted); max-width: 600px; margin: 0 auto;">
-                    For business inquiries, collaborations, or general questions.
-                </p>
-                <div class="contact-links">
-                    <a href="mailto:hello@bundl.shop" class="contact-link">
-                        <i data-lucide="mail" width="16" height="16"></i>
-                        hello@bundl.shop
+            <div class="contact-section" id="contact">
+                <h2>Get In Touch</h2>
+                <p>For business inquiries, collaborations, trades, or just to say hi!</p>
+                <div class="contact-grid">
+                    <a href="mailto:hello@bundl.shop" class="contact-card">
+                        <div class="contact-icon">
+                            <i data-lucide="mail" width="24" height="24"></i>
+                        </div>
+                        <div class="contact-type">General Inquiries</div>
+                        <div class="contact-value">hello@bundl.shop</div>
                     </a>
-                    <a href="mailto:press@bundl.shop" class="contact-link">
-                        <i data-lucide="file-text" width="16" height="16"></i>
-                        press@bundl.shop
+                    <a href="mailto:trades@bundl.shop" class="contact-card">
+                        <div class="contact-icon">
+                            <i data-lucide="repeat" width="24" height="24"></i>
+                        </div>
+                        <div class="contact-type">Trades & Sales</div>
+                        <div class="contact-value">trades@bundl.shop</div>
                     </a>
-                    <a href="mailto:support@bundl.shop" class="contact-link">
-                        <i data-lucide="help-circle" width="16" height="16"></i>
-                        support@bundl.shop
+                    <a href="mailto:collab@bundl.shop" class="contact-card">
+                        <div class="contact-icon">
+                            <i data-lucide="users" width="24" height="24"></i>
+                        </div>
+                        <div class="contact-type">Collaborations</div>
+                        <div class="contact-value">collab@bundl.shop</div>
                     </a>
                 </div>
             </div>
@@ -250,8 +534,8 @@
     <footer style="border-top: 1px solid var(--color-border); padding: 80px 0;">
         <div class="container" style="text-align: center;">
             <div style="display: flex; justify-content: center; gap: 2rem; margin-bottom: 2rem; flex-wrap: wrap;">
-                <a href="index.html" class="nav-link">Shop</a>
-                <a href="archive.html" class="nav-link">Archive</a>
+                <a href="index.html" class="nav-link">Portfolio</a>
+                <a href="mtg.html" class="nav-link">MTG Store</a>
                 <a href="links.html" class="nav-link">Links</a>
                 <a href="socials.html" class="nav-link">Socials</a>
                 <a href="about.html" class="nav-link">About</a>
@@ -262,6 +546,19 @@
 
     <script>
         lucide.createIcons();
+
+        function handleNewsletterSubmit(e) {
+            e.preventDefault();
+            const form = e.target;
+            form.innerHTML = `
+                <div style="text-align: center; padding: 1rem;">
+                    <i data-lucide="check-circle" width="32" height="32" style="color: #22c55e;"></i>
+                    <p style="margin-top: 1rem; font-weight: 600;">You're subscribed!</p>
+                    <p style="color: var(--color-text-muted); font-size: 0.875rem;">Welcome to the community.</p>
+                </div>
+            `;
+            lucide.createIcons();
+        }
     </script>
 </body>
 

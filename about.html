@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About | BUNDL.SHOP</title>
+    <title>About | BUNDL</title>
     <meta name="description"
-        content="Learn about BUNDL.SHOP - our mission, values, and vision for redefining resale culture.">
+        content="Learn about BUNDL - Creator, collector, and Magic: The Gathering enthusiast. My story, skills, and passion.">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -24,7 +24,7 @@
     <style>
         /* Page-specific styles */
         .about-hero {
-            min-height: 70vh;
+            min-height: 60vh;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -33,96 +33,389 @@
             position: relative;
         }
 
-        .content-section {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 4rem 0;
+        .about-hero h1 {
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
         }
 
-        .content-section h2 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 2rem;
-            line-height: 1.2;
+        .about-hero p {
+            opacity: 0;
+            animation: fadeInUp 0.8s ease 0.2s forwards;
         }
 
-        .content-section p {
-            font-size: 1.125rem;
-            line-height: 1.8;
-            color: var(--color-text-muted);
-            margin-bottom: 1.5rem;
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        .manifesto-section {
-            background: var(--surface-card);
-            border: 1px solid var(--color-border);
-            border-radius: 12px;
-            padding: 4rem;
-            margin: 4rem 0;
-        }
-
-        .values-grid {
+        .profile-section {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin: 4rem 0;
+            grid-template-columns: 300px 1fr;
+            gap: 4rem;
+            align-items: start;
+            margin-bottom: 5rem;
         }
 
-        .value-card {
-            text-align: center;
-            padding: 2rem;
+        @media (max-width: 768px) {
+            .profile-section {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
         }
 
-        .value-icon {
-            width: 56px;
-            height: 56px;
-            margin: 0 auto 1.5rem;
+        .profile-image {
+            width: 100%;
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, #3b82f6, #9333ea);
+            border-radius: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: rgba(59, 130, 246, 0.1);
-            border-radius: 12px;
+            font-size: 6rem;
+            position: relative;
+            overflow: hidden;
         }
 
-        .value-title {
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: 0.75rem;
+        .profile-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(180deg, transparent 50%, rgba(0, 0, 0, 0.5) 100%);
         }
 
-        .value-description {
-            font-size: 0.95rem;
-            color: var(--color-text-muted);
-            line-height: 1.6;
+        .profile-emoji {
+            position: relative;
+            z-index: 1;
         }
 
-        .stats-section {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            padding: 4rem 0;
-            text-align: center;
-        }
-
-        .stat-item {
-            padding: 2rem;
-        }
-
-        .stat-number {
-            font-size: 3rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+        .profile-info h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
             margin-bottom: 0.5rem;
         }
 
-        .stat-label {
-            font-size: 0.9rem;
+        .profile-tagline {
+            font-family: var(--font-mono);
+            color: var(--color-accent);
+            margin-bottom: 1.5rem;
+        }
+
+        .profile-bio {
             color: var(--color-text-muted);
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .profile-bio p {
+            margin-bottom: 1rem;
+        }
+
+        .profile-tags {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+
+        .tag {
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            color: var(--color-accent);
+            padding: 0.5rem 1rem;
+            border-radius: 999px;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        .profile-cta {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        @media (max-width: 768px) {
+            .profile-cta {
+                justify-content: center;
+            }
+        }
+
+        /* Skills Section */
+        .skills-section {
+            background: var(--surface-card);
+            border: 1px solid var(--color-border);
+            border-radius: 20px;
+            padding: 3rem;
+            margin-bottom: 5rem;
+        }
+
+        .skills-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .skills-header h2 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .skills-header p {
+            color: var(--color-text-muted);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-item {
+            text-align: center;
+            padding: 1.5rem;
+        }
+
+        .skill-icon {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(147, 51, 234, 0.1));
+            border-radius: 16px;
+            font-size: 2rem;
+        }
+
+        .skill-name {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .skill-level {
+            font-size: 0.875rem;
+            color: var(--color-text-muted);
+        }
+
+        /* MTG Section */
+        .mtg-passion {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            margin-bottom: 5rem;
+            padding: 3rem;
+            background: linear-gradient(135deg, rgba(147, 51, 234, 0.05), rgba(59, 130, 246, 0.05));
+            border: 1px solid var(--color-border);
+            border-radius: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .mtg-passion {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .mtg-passion-content h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .mtg-passion-content p {
+            color: var(--color-text-muted);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .mtg-formats {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .format-badge {
+            background: linear-gradient(135deg, #9333ea, #3b82f6);
+            padding: 0.5rem 1rem;
+            border-radius: 999px;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        .mtg-image-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .mtg-image-grid img {
+            width: 100%;
+            aspect-ratio: 1;
+            object-fit: cover;
+            border-radius: 12px;
+            transition: transform 0.3s;
+        }
+
+        .mtg-image-grid img:hover {
+            transform: scale(1.05);
+        }
+
+        /* Timeline */
+        .timeline-section {
+            margin-bottom: 5rem;
+        }
+
+        .timeline-section h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: var(--color-border);
+        }
+
+        @media (max-width: 768px) {
+            .timeline::before {
+                left: 20px;
+            }
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(odd) {
+            flex-direction: row-reverse;
+            text-align: right;
+        }
+
+        @media (max-width: 768px) {
+
+            .timeline-item,
+            .timeline-item:nth-child(odd) {
+                flex-direction: row;
+                text-align: left;
+                padding-left: 50px;
+            }
+        }
+
+        .timeline-content {
+            flex: 1;
+            background: var(--surface-card);
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            max-width: calc(50% - 30px);
+        }
+
+        @media (max-width: 768px) {
+            .timeline-content {
+                max-width: 100%;
+            }
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 16px;
+            height: 16px;
+            background: var(--color-accent);
+            border-radius: 50%;
+            border: 3px solid var(--color-bg);
+        }
+
+        @media (max-width: 768px) {
+            .timeline-dot {
+                left: 20px;
+            }
+        }
+
+        .timeline-year {
+            font-family: var(--font-mono);
+            color: var(--color-accent);
+            font-size: 0.875rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-desc {
+            color: var(--color-text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Contact CTA */
+        .contact-cta {
+            text-align: center;
+            padding: 4rem;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(147, 51, 234, 0.1));
+            border: 1px solid var(--color-border);
+            border-radius: 20px;
+            margin-bottom: 5rem;
+        }
+
+        .contact-cta h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-cta p {
+            color: var(--color-text-muted);
+            max-width: 500px;
+            margin: 0 auto 2rem;
+        }
+
+        .contact-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: transparent;
+            color: white;
+            padding: 1rem 2rem;
+            border: 1px solid var(--color-border);
+            border-radius: 999px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: black;
+            border-color: white;
         }
     </style>
 </head>
@@ -138,15 +431,15 @@
             <a href="index.html" class="logo"><img src="logo.png" alt="BUNDL" class="logo-img"></a>
 
             <div class="nav-menu">
-                <a href="index.html" class="nav-link">Shop</a>
-                <a href="archive.html" class="nav-link">Archive</a>
+                <a href="index.html" class="nav-link">Portfolio</a>
+                <a href="mtg.html" class="nav-link">MTG Store</a>
                 <a href="links.html" class="nav-link">Links</a>
                 <a href="socials.html" class="nav-link">Socials</a>
                 <a href="about.html" class="nav-link">About</a>
             </div>
 
             <div class="nav-actions">
-                <a href="#" class="nav-link">Account</a>
+                <a href="socials.html" class="nav-link">Connect</a>
             </div>
         </div>
     </header>
@@ -155,111 +448,179 @@
         <section class="about-hero">
             <div class="hero-bg-accent"></div>
             <div class="hero-content">
-                <h1 class="text-display">The<br>Manifesto</h1>
-                <p class="text-xl" style="margin-top: 2rem; opacity: 0.8; max-width: 700px;">
-                    Redefining resale. Building community. Curating culture.
+                <h1 class="text-display">About<br>Me</h1>
+                <p class="text-xl" style="margin-top: 2rem; opacity: 0.8; max-width: 600px;">
+                    Creator, collector, and Magic: The Gathering enthusiast.
                 </p>
             </div>
         </section>
 
         <section class="container">
-            <div class="content-section">
-                <h2>Our Story</h2>
-                <p>
-                    BUNDL.SHOP was born from a simple belief: resale shouldn't be a compromise. It should be an
-                    experience—a discovery, a story, a connection to something bigger than just clothes.
-                </p>
-                <p>
-                    We're not just another marketplace. We're curators, storytellers, and community builders.
-                    Every piece in our collection is handpicked, authenticated, and presented with the care it deserves.
-                </p>
-                <p>
-                    From underground archives to modern grails, we celebrate fashion that transcends trends and
-                    seasons. This is resale, reimagined.
-                </p>
-            </div>
-
-            <div class="manifesto-section">
-                <h2 style="text-align: center; margin-bottom: 3rem;">What We Believe</h2>
-                <div class="values-grid">
-                    <div class="value-card">
-                        <div class="value-icon">
-                            <i data-lucide="heart" width="28" height="28"></i>
-                        </div>
-                        <div class="value-title">Quality Over Quantity</div>
-                        <div class="value-description">
-                            Every piece is carefully selected, authenticated, and curated. No mass listings, only
-                            grails.
-                        </div>
+            <!-- Profile Section -->
+            <div class="profile-section">
+                <div class="profile-image">
+                    <span class="profile-emoji">🧙‍♂️</span>
+                </div>
+                <div class="profile-info">
+                    <h2>Hey, I'm BUNDL</h2>
+                    <p class="profile-tagline">// Creator • Collector • Planeswalker</p>
+                    <div class="profile-bio">
+                        <p>
+                            Welcome to my corner of the internet! I'm passionate about building cool things,
+                            curating unique content, and everything Magic: The Gathering.
+                        </p>
+                        <p>
+                            When I'm not brewing new Commander decks or hunting for rare singles,
+                            I'm working on creative projects and connecting with fellow enthusiasts.
+                        </p>
+                        <p>
+                            This site serves as my digital business card and home for my MTG store,
+                            where I offer carefully selected cards and products for fellow Planeswalkers.
+                        </p>
                     </div>
-
-                    <div class="value-card">
-                        <div class="value-icon">
-                            <i data-lucide="users" width="28" height="28"></i>
-                        </div>
-                        <div class="value-title">Community First</div>
-                        <div class="value-description">
-                            Built by and for the culture. Our community drives everything we do.
-                        </div>
+                    <div class="profile-tags">
+                        <span class="tag">MTG Player</span>
+                        <span class="tag">Commander</span>
+                        <span class="tag">Collector</span>
+                        <span class="tag">Creator</span>
                     </div>
-
-                    <div class="value-card">
-                        <div class="value-icon">
-                            <i data-lucide="leaf" width="28" height="28"></i>
-                        </div>
-                        <div class="value-title">Sustainable Fashion</div>
-                        <div class="value-description">
-                            Giving quality pieces a second life. Better for your wallet, better for the planet.
-                        </div>
-                    </div>
-
-                    <div class="value-card">
-                        <div class="value-icon">
-                            <i data-lucide="zap" width="28" height="28"></i>
-                        </div>
-                        <div class="value-title">Authenticity Always</div>
-                        <div class="value-description">
-                            Rigorous authentication process. Every piece is verified, period.
-                        </div>
+                    <div class="profile-cta">
+                        <a href="mtg.html" class="btn-primary">Visit Store</a>
+                        <a href="socials.html" class="btn-secondary">Connect</a>
                     </div>
                 </div>
             </div>
 
-            <div class="stats-section">
-                <div class="stat-item">
-                    <div class="stat-number">10K+</div>
-                    <div class="stat-label">Items Curated</div>
+            <!-- Skills/Interests Section -->
+            <div class="skills-section">
+                <div class="skills-header">
+                    <h2>What I'm Into</h2>
+                    <p>A mix of hobbies and interests</p>
                 </div>
-                <div class="stat-item">
-                    <div class="stat-number">5K+</div>
-                    <div class="stat-label">Community Members</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">100%</div>
-                    <div class="stat-label">Authenticated</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">24/7</div>
-                    <div class="stat-label">Support</div>
+                <div class="skills-grid">
+                    <div class="skill-item">
+                        <div class="skill-icon">🎴</div>
+                        <div class="skill-name">MTG Trading</div>
+                        <div class="skill-level">Expert Level</div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-icon">⚔️</div>
+                        <div class="skill-name">Commander</div>
+                        <div class="skill-level">Favorite Format</div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-icon">📦</div>
+                        <div class="skill-name">Collecting</div>
+                        <div class="skill-level">10+ Years</div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-icon">🎨</div>
+                        <div class="skill-name">Curation</div>
+                        <div class="skill-level">Aesthetic Eye</div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-icon">🤝</div>
+                        <div class="skill-name">Community</div>
+                        <div class="skill-level">Building Connections</div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-icon">🚀</div>
+                        <div class="skill-name">Creating</div>
+                        <div class="skill-level">Always Learning</div>
+                    </div>
                 </div>
             </div>
 
-            <div class="content-section" style="text-align: center; padding-top: 2rem;">
-                <h2>Join the Movement</h2>
-                <p style="max-width: 600px; margin: 0 auto 2rem;">
-                    Whether you're a collector, a seller, or just someone who appreciates quality,
-                    there's a place for you in the BUNDL community.
-                </p>
-                <a href="socials.html" class="btn-primary">Connect With Us</a>
+            <!-- MTG Passion Section -->
+            <div class="mtg-passion">
+                <div class="mtg-passion-content">
+                    <h2>My MTG Journey</h2>
+                    <p>
+                        Magic: The Gathering isn't just a game—it's a lifestyle. From cracking my first booster pack
+                        to building competitive Commander decks, this game has been a constant source of joy and
+                        community.
+                    </p>
+                    <p>
+                        Now I'm sharing that passion by curating the best MTG products for fellow players and
+                        collectors.
+                        Every card in my store is hand-selected with care.
+                    </p>
+                    <div class="mtg-formats">
+                        <span class="format-badge">Commander</span>
+                        <span class="format-badge">Modern</span>
+                        <span class="format-badge">Draft</span>
+                        <span class="format-badge">Collecting</span>
+                    </div>
+                </div>
+                <div class="mtg-image-grid">
+                    <img src="images/commander_deck.png" alt="Commander Deck">
+                    <img src="images/booster_box.png" alt="Booster Box">
+                    <img src="images/single_cards.png" alt="Singles">
+                    <img src="images/booster_box.png" alt="More Products">
+                </div>
+            </div>
+
+            <!-- Timeline -->
+            <div class="timeline-section">
+                <h2>The Journey</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">2026</div>
+                            <div class="timeline-title">Launched BUNDL.SHOP</div>
+                            <div class="timeline-desc">Started my MTG store to share the passion with the community.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">2024</div>
+                            <div class="timeline-title">First Commander Tournament Win</div>
+                            <div class="timeline-desc">Took down a local tournament with my favorite deck.</div>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">2020</div>
+                            <div class="timeline-title">Started Collecting Seriously</div>
+                            <div class="timeline-desc">Began building a curated collection of rare and valuable cards.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">2015</div>
+                            <div class="timeline-title">First MTG Game</div>
+                            <div class="timeline-desc">Hooked from the first draw. The beginning of an obsession.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact CTA -->
+            <div class="contact-cta">
+                <h2>Let's Connect</h2>
+                <p>Interested in trading, discussing MTG, or just saying hi? I'd love to hear from you.</p>
+                <div class="contact-buttons">
+                    <a href="socials.html" class="btn-primary">Find Me Online</a>
+                    <a href="mailto:hello@bundl.shop" class="btn-secondary">
+                        <i data-lucide="mail" width="16" height="16"></i>
+                        Email Me
+                    </a>
+                </div>
             </div>
         </section>
     </main>
 
-    <footer style="border-top: 1px solid var(--color-border); padding: 80px 0; margin-top: 80px;">
+    <footer style="border-top: 1px solid var(--color-border); padding: 80px 0;">
         <div class="container" style="text-align: center;">
             <div style="display: flex; justify-content: center; gap: 2rem; margin-bottom: 2rem; flex-wrap: wrap;">
-                <a href="index.html" class="nav-link">Shop</a>
-                <a href="archive.html" class="nav-link">Archive</a>
+                <a href="index.html" class="nav-link">Portfolio</a>
+                <a href="mtg.html" class="nav-link">MTG Store</a>
                 <a href="links.html" class="nav-link">Links</a>
                 <a href="socials.html" class="nav-link">Socials</a>
                 <a href="about.html" class="nav-link">About</a>

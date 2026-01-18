@@ -4,8 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BUNDL.SHOP | Modern Resale</title>
-    <meta name="description" content="Curated resale bundles and premium drops.">
+    <title>BUNDL | Creator & MTG Enthusiast</title>
+    <meta name="description"
+        content="Welcome to BUNDL - Creator, collector, and Magic: The Gathering enthusiast. Explore my portfolio and MTG store.">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -19,6 +20,507 @@
 
     <!-- Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        /* Portfolio-specific styles */
+        .portfolio-hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding-top: var(--header-height);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .portfolio-hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('images/portfolio_hero.png') center/cover no-repeat;
+            opacity: 0.3;
+            z-index: 0;
+        }
+
+        .portfolio-hero-gradient {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, transparent 0%, rgba(10, 10, 10, 0.8) 70%);
+            z-index: 1;
+        }
+
+        .portfolio-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            padding: 0 20px;
+        }
+
+        .greeting {
+            font-family: var(--font-mono);
+            font-size: 1rem;
+            color: var(--color-accent);
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .portfolio-title {
+            font-size: clamp(3rem, 8vw, 7rem);
+            font-weight: 800;
+            line-height: 0.9;
+            letter-spacing: -0.04em;
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease 0.2s forwards;
+        }
+
+        .title-gradient {
+            background: linear-gradient(135deg, #fff 0%, #3b82f6 50%, #9333ea 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .portfolio-subtitle {
+            font-size: 1.25rem;
+            color: var(--color-text-muted);
+            max-width: 600px;
+            margin: 0 auto 2.5rem;
+            line-height: 1.7;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease 0.4s forwards;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease 0.6s forwards;
+        }
+
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: transparent;
+            color: white;
+            padding: 1rem 2rem;
+            border: 1px solid var(--color-border);
+            border-radius: 999px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s var(--ease-out-expo);
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: black;
+            border-color: white;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Scroll indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease 1s forwards;
+        }
+
+        .scroll-indicator span {
+            font-size: 0.75rem;
+            color: var(--color-text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .scroll-arrow {
+            width: 24px;
+            height: 24px;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+
+            0%,
+            20%,
+            50%,
+            80%,
+            100% {
+                transform: translateY(0);
+            }
+
+            40% {
+                transform: translateY(10px);
+            }
+
+            60% {
+                transform: translateY(5px);
+            }
+        }
+
+        /* Features Section */
+        .features-section {
+            padding: 100px 0;
+            background: linear-gradient(180deg, transparent 0%, rgba(59, 130, 246, 0.03) 100%);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-label {
+            font-family: var(--font-mono);
+            font-size: 0.875rem;
+            color: var(--color-accent);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: var(--surface-card);
+            border: 1px solid var(--color-border);
+            border-radius: 16px;
+            padding: 2.5rem;
+            transition: all 0.4s var(--ease-out-expo);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #3b82f6, #9333ea);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s var(--ease-out-expo);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--color-accent);
+        }
+
+        .feature-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .feature-icon {
+            width: 56px;
+            height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(59, 130, 246, 0.1);
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        .feature-description {
+            color: var(--color-text-muted);
+            line-height: 1.6;
+        }
+
+        .feature-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1.5rem;
+            font-weight: 600;
+            color: var(--color-accent);
+            transition: gap 0.3s;
+        }
+
+        .feature-card:hover .feature-link {
+            gap: 0.75rem;
+        }
+
+        /* MTG Highlight Section */
+        .mtg-highlight {
+            padding: 100px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mtg-highlight-bg {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            background: url('images/mtg_hero.png') center/cover no-repeat;
+            opacity: 0.2;
+            mask-image: linear-gradient(to left, rgba(0, 0, 0, 1) 0%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to left, rgba(0, 0, 0, 1) 0%, transparent 100%);
+        }
+
+        .mtg-highlight-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            .mtg-highlight-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .mtg-info h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .mtg-info p {
+            color: var(--color-text-muted);
+            line-height: 1.7;
+            margin-bottom: 2rem;
+        }
+
+        .mtg-stats {
+            display: flex;
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #9333ea, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: var(--color-text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .mtg-preview {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .preview-card {
+            background: var(--surface-card);
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s var(--ease-out-expo);
+        }
+
+        .preview-card:hover {
+            transform: scale(1.05);
+            border-color: #9333ea;
+        }
+
+        .preview-card img {
+            width: 100%;
+            aspect-ratio: 1;
+            object-fit: cover;
+        }
+
+        /* Newsletter Section */
+        .newsletter-section {
+            padding: 80px 0;
+            background: linear-gradient(135deg, rgba(147, 51, 234, 0.1), rgba(59, 130, 246, 0.1));
+            border-top: 1px solid var(--color-border);
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .newsletter-content {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .newsletter-content h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .newsletter-content p {
+            color: var(--color-text-muted);
+            margin-bottom: 2rem;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 1rem;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 600px) {
+            .newsletter-form {
+                flex-direction: column;
+            }
+        }
+
+        .newsletter-input {
+            flex: 1;
+            background: var(--surface-card);
+            border: 1px solid var(--color-border);
+            border-radius: 999px;
+            padding: 1rem 1.5rem;
+            color: white;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .newsletter-input:focus {
+            border-color: var(--color-accent);
+        }
+
+        .newsletter-input::placeholder {
+            color: var(--color-text-muted);
+        }
+
+        .newsletter-btn {
+            background: white;
+            color: black;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 999px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .newsletter-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(255, 255, 255, 0.2);
+        }
+
+        /* Social Proof */
+        .social-proof {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .proof-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--color-text-muted);
+            font-size: 0.875rem;
+        }
+
+        /* Quick Links Grid */
+        .quick-links {
+            padding: 100px 0;
+        }
+
+        .links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .quick-link-card {
+            background: var(--surface-card);
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s var(--ease-out-expo);
+        }
+
+        .quick-link-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--color-accent);
+            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.1);
+        }
+
+        .quick-link-icon {
+            width: 48px;
+            height: 48px;
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(59, 130, 246, 0.1);
+            border-radius: 12px;
+        }
+
+        .quick-link-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .quick-link-desc {
+            font-size: 0.875rem;
+            color: var(--color-text-muted);
+        }
+    </style>
 </head>
 
 <body>
@@ -29,64 +531,228 @@
     <!-- Interface -->
     <header class="header">
         <div class="container nav">
-            <a href="#" class="logo"><img src="logo.png" alt="BUNDL" class="logo-img"></a>
+            <a href="index.html" class="logo"><img src="logo.png" alt="BUNDL" class="logo-img"></a>
 
             <div class="nav-menu">
-                <a href="index.html" class="nav-link">Shop</a>
-                <a href="archive.html" class="nav-link">Archive</a>
+                <a href="index.html" class="nav-link">Portfolio</a>
+                <a href="mtg.html" class="nav-link">MTG Store</a>
                 <a href="links.html" class="nav-link">Links</a>
                 <a href="socials.html" class="nav-link">Socials</a>
                 <a href="about.html" class="nav-link">About</a>
             </div>
 
             <div class="nav-actions">
-                <a href="#" class="nav-link">Account</a>
-                <button class="nav-link" onclick="toggleDrawer()"
-                    style="background:none; border:none; color:inherit; cursor:pointer;">
-                    Cart (<span id="cart-count">0</span>)
-                </button>
+                <a href="socials.html" class="nav-link">Connect</a>
             </div>
         </div>
     </header>
 
     <main>
-        <section class="hero">
+        <!-- Hero Section -->
+        <section class="portfolio-hero">
+            <div class="portfolio-hero-bg"></div>
+            <div class="portfolio-hero-gradient"></div>
             <div class="hero-bg-accent"></div>
-            <div class="hero-content">
-                <h1 class="text-display">Redefine<br>Resale</h1>
-                <p class="text-xl" style="margin-top: 2rem; opacity: 0.8;">Curated archives from the underground.</p>
-                <a href="#shop" class="btn-primary">Explore Collection</a>
+
+            <div class="portfolio-content">
+                <p class="greeting">// Hello, I'm</p>
+                <h1 class="portfolio-title">
+                    <span class="title-gradient">BUNDL</span>
+                </h1>
+                <p class="portfolio-subtitle">
+                    Creator, collector, and Magic: The Gathering enthusiast.
+                    Building cool things and curating premium MTG products.
+                </p>
+                <div class="cta-buttons">
+                    <a href="mtg.html" class="btn-primary">
+                        <span>🎴</span> MTG Store
+                    </a>
+                    <a href="about.html" class="btn-secondary">
+                        <span>Learn More</span>
+                        <i data-lucide="arrow-right" width="16" height="16"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="scroll-indicator">
+                <span>Scroll</span>
+                <i data-lucide="chevron-down" class="scroll-arrow"></i>
             </div>
         </section>
 
-        <section id="shop" class="container" style="padding-top: 100px;">
-            <div
-                style="display:flex; justify-content:space-between; align-items:end; margin-bottom: 3rem; padding-bottom: 20px; border-bottom: 1px solid var(--color-border);">
-                <h2 class="text-xl">The Drop [001]</h2>
-                <div class="text-sm font-mono">6 ITEMS AVAILABLE</div>
-            </div>
+        <!-- Features Section -->
+        <section class="features-section">
+            <div class="container">
+                <div class="section-header">
+                    <p class="section-label">What I Do</p>
+                    <h2 class="section-title">Explore My World</h2>
+                </div>
 
-            <!-- Filters -->
-            <div class="filter-bar" id="filter-bar">
-                <button class="filter-btn active" onclick="filterProducts('All')">All</button>
-                <button class="filter-btn" onclick="filterProducts('Outerwear')">Outerwear</button>
-                <button class="filter-btn" onclick="filterProducts('Tops')">Tops</button>
-                <button class="filter-btn" onclick="filterProducts('Bottoms')">Bottoms</button>
-                <button class="filter-btn" onclick="filterProducts('Footwear')">Footwear</button>
-                <button class="filter-btn" onclick="filterProducts('Accessories')">Accessories</button>
-            </div>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i data-lucide="wand-2" width="28" height="28"></i>
+                        </div>
+                        <h3 class="feature-title">MTG Store</h3>
+                        <p class="feature-description">
+                            Premium Magic: The Gathering cards, Commander decks, booster boxes, and accessories for
+                            players and collectors.
+                        </p>
+                        <a href="mtg.html" class="feature-link">
+                            Shop Now <i data-lucide="arrow-right" width="16" height="16"></i>
+                        </a>
+                    </div>
 
-            <div id="product-grid" class="product-grid">
-                <!-- Javascript Injection -->
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i data-lucide="link" width="28" height="28"></i>
+                        </div>
+                        <h3 class="feature-title">Curated Links</h3>
+                        <p class="feature-description">
+                            A handpicked collection of resources, tools, and inspiration from around the web.
+                        </p>
+                        <a href="links.html" class="feature-link">
+                            Explore <i data-lucide="arrow-right" width="16" height="16"></i>
+                        </a>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i data-lucide="users" width="28" height="28"></i>
+                        </div>
+                        <h3 class="feature-title">Community</h3>
+                        <p class="feature-description">
+                            Connect with me on social media. Join the community and stay updated with the latest.
+                        </p>
+                        <a href="socials.html" class="feature-link">
+                            Connect <i data-lucide="arrow-right" width="16" height="16"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MTG Highlight Section -->
+        <section class="mtg-highlight">
+            <div class="mtg-highlight-bg"></div>
+            <div class="container">
+                <div class="mtg-highlight-content">
+                    <div class="mtg-info">
+                        <h2>Magic: The Gathering Store</h2>
+                        <p>
+                            Your destination for premium MTG products. From competitive staples to Commander
+                            powerhouses,
+                            I curate only the best cards and sealed products for fellow Planeswalkers.
+                        </p>
+                        <div class="mtg-stats">
+                            <div class="stat">
+                                <div class="stat-value">50+</div>
+                                <div class="stat-label">Products</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-value">5★</div>
+                                <div class="stat-label">Rating</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-value">24h</div>
+                                <div class="stat-label">Shipping</div>
+                            </div>
+                        </div>
+                        <a href="mtg.html" class="btn-primary">Browse Collection</a>
+                    </div>
+                    <div class="mtg-preview">
+                        <a href="mtg.html" class="preview-card">
+                            <img src="images/commander_deck.png" alt="Commander Deck">
+                        </a>
+                        <a href="mtg.html" class="preview-card">
+                            <img src="images/booster_box.png" alt="Booster Box">
+                        </a>
+                        <a href="mtg.html" class="preview-card">
+                            <img src="images/single_cards.png" alt="Singles">
+                        </a>
+                        <a href="mtg.html" class="preview-card">
+                            <img src="images/booster_box.png" alt="More Products">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Newsletter Section -->
+        <section class="newsletter-section">
+            <div class="container">
+                <div class="newsletter-content">
+                    <h2>Stay in the Loop</h2>
+                    <p>Get notified about new MTG drops, exclusive deals, and content updates.</p>
+                    <form class="newsletter-form" onsubmit="handleNewsletterSubmit(event)">
+                        <input type="email" class="newsletter-input" placeholder="Enter your email" required>
+                        <button type="submit" class="newsletter-btn">Subscribe</button>
+                    </form>
+                    <div class="social-proof">
+                        <div class="proof-item">
+                            <i data-lucide="check-circle" width="16" height="16"></i>
+                            <span>No spam, ever</span>
+                        </div>
+                        <div class="proof-item">
+                            <i data-lucide="mail" width="16" height="16"></i>
+                            <span>Weekly updates</span>
+                        </div>
+                        <div class="proof-item">
+                            <i data-lucide="gift" width="16" height="16"></i>
+                            <span>Exclusive deals</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Links -->
+        <section class="quick-links">
+            <div class="container">
+                <div class="section-header">
+                    <p class="section-label">Quick Access</p>
+                    <h2 class="section-title">Jump To</h2>
+                </div>
+
+                <div class="links-grid">
+                    <a href="mtg.html" class="quick-link-card">
+                        <div class="quick-link-icon">
+                            <i data-lucide="shopping-bag" width="24" height="24"></i>
+                        </div>
+                        <h3 class="quick-link-title">MTG Store</h3>
+                        <p class="quick-link-desc">Browse cards & products</p>
+                    </a>
+                    <a href="links.html" class="quick-link-card">
+                        <div class="quick-link-icon">
+                            <i data-lucide="bookmark" width="24" height="24"></i>
+                        </div>
+                        <h3 class="quick-link-title">Links</h3>
+                        <p class="quick-link-desc">Curated resources</p>
+                    </a>
+                    <a href="socials.html" class="quick-link-card">
+                        <div class="quick-link-icon">
+                            <i data-lucide="at-sign" width="24" height="24"></i>
+                        </div>
+                        <h3 class="quick-link-title">Socials</h3>
+                        <p class="quick-link-desc">Connect with me</p>
+                    </a>
+                    <a href="about.html" class="quick-link-card">
+                        <div class="quick-link-icon">
+                            <i data-lucide="user" width="24" height="24"></i>
+                        </div>
+                        <h3 class="quick-link-title">About</h3>
+                        <p class="quick-link-desc">Learn my story</p>
+                    </a>
+                </div>
             </div>
         </section>
     </main>
 
-    <footer style="border-top: 1px solid var(--color-border); padding: 80px 0; margin-top: 80px;">
+    <footer style="border-top: 1px solid var(--color-border); padding: 80px 0;">
         <div class="container" style="text-align: center;">
             <div style="display: flex; justify-content: center; gap: 2rem; margin-bottom: 2rem; flex-wrap: wrap;">
-                <a href="index.html" class="nav-link">Shop</a>
-                <a href="archive.html" class="nav-link">Archive</a>
+                <a href="index.html" class="nav-link">Portfolio</a>
+                <a href="mtg.html" class="nav-link">MTG Store</a>
                 <a href="links.html" class="nav-link">Links</a>
                 <a href="socials.html" class="nav-link">Socials</a>
                 <a href="about.html" class="nav-link">About</a>
@@ -95,42 +761,25 @@
         </div>
     </footer>
 
-    <!-- Cart Drawer -->
-    <div id="cart-drawer-container" class="">
-        <div class="drawer-overlay" onclick="toggleDrawer()"></div>
-        <aside class="drawer">
-            <div class="drawer-header">
-                <h2 class="text-xl">Your Cart</h2>
-                <button class="close-btn" onclick="toggleDrawer()">&times;</button>
-            </div>
-
-            <div class="cart-items" id="cart-items">
-                <!-- Empty State -->
-                <div style="text-align:center; padding: 4rem 0; opacity: 0.5;">
-                    Your bag is empty.
-                </div>
-            </div>
-
-            <div class="cart-footer">
-                <div class="cart-total">
-                    <span>Total</span>
-                    <span id="cart-total">$0.00</span>
-                </div>
-                <button class="btn-checkout">Checkout</button>
-            </div>
-        </aside>
-    </div>
-
-    <!-- Quick View Modal -->
-    <div id="quick-view-modal" class="modal-overlay" onclick="closeModal(event)">
-        <div class="modal-content" onclick="event.stopPropagation()">
-            <!-- Injeced Content -->
-        </div>
-    </div>
-
-    <script src="app.js"></script>
     <script>
         lucide.createIcons();
+
+        function handleNewsletterSubmit(e) {
+            e.preventDefault();
+            const input = e.target.querySelector('input');
+            const email = input.value;
+
+            // Show success message
+            const form = e.target;
+            form.innerHTML = `
+                <div style="text-align: center; padding: 1rem;">
+                    <i data-lucide="check-circle" width="32" height="32" style="color: #22c55e;"></i>
+                    <p style="margin-top: 1rem; font-weight: 600;">Thanks for subscribing!</p>
+                    <p style="color: var(--color-text-muted); font-size: 0.875rem;">You'll hear from us soon.</p>
+                </div>
+            `;
+            lucide.createIcons();
+        }
     </script>
 </body>
 

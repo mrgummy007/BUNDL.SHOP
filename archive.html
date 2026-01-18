@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Archive | BUNDL.SHOP</title>
-    <meta name="description" content="Browse previous drops and collections from BUNDL.SHOP archive.">
+    <title>Archive | BUNDL</title>
+    <meta name="description" content="Browse my MTG collection history, past drops, and memorable pulls.">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -21,7 +21,6 @@
     <script src="https://unpkg.com/lucide@latest"></script>
 
     <style>
-        /* Page-specific styles */
         .archive-hero {
             min-height: 50vh;
             display: flex;
@@ -32,36 +31,118 @@
             position: relative;
         }
 
+        .archive-hero h1 {
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .archive-hero p {
+            opacity: 0;
+            animation: fadeInUp 0.8s ease 0.2s forwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         .timeline {
             position: relative;
             padding: 4rem 0;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--color-accent), #9333ea, transparent);
+        }
+
+        @media (max-width: 768px) {
+            .timeline::before {
+                left: 20px;
+            }
         }
 
         .timeline-item {
             margin-bottom: 4rem;
             position: relative;
+            display: flex;
+            gap: 3rem;
+        }
+
+        .timeline-item:nth-child(odd) {
+            flex-direction: row-reverse;
+        }
+
+        @media (max-width: 768px) {
+
+            .timeline-item,
+            .timeline-item:nth-child(odd) {
+                flex-direction: column;
+                padding-left: 50px;
+                gap: 1rem;
+            }
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 20px;
+            background: linear-gradient(135deg, #3b82f6, #9333ea);
+            border-radius: 50%;
+            border: 4px solid var(--color-bg);
+            z-index: 1;
+        }
+
+        @media (max-width: 768px) {
+            .timeline-dot {
+                left: 20px;
+            }
+        }
+
+        .timeline-content {
+            flex: 1;
+            max-width: calc(50% - 40px);
+        }
+
+        @media (max-width: 768px) {
+            .timeline-content {
+                max-width: 100%;
+            }
         }
 
         .drop-card {
             background: var(--surface-card);
             border: 1px solid var(--color-border);
-            border-radius: 12px;
+            border-radius: 16px;
             overflow: hidden;
             transition: all 0.4s var(--ease-out-expo);
-            display: grid;
-            grid-template-columns: 300px 1fr;
-            gap: 0;
         }
 
         .drop-card:hover {
             border-color: var(--color-accent);
             transform: translateY(-4px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.15);
         }
 
         .drop-image {
-            aspect-ratio: 1;
-            background: #1a1a1a;
+            aspect-ratio: 16/9;
+            background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -79,23 +160,21 @@
             transform: scale(1.1);
         }
 
-        .drop-content {
-            padding: 2.5rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
+        .drop-number {
+            font-family: var(--font-mono);
+            font-size: 4rem;
+            opacity: 0.2;
+            font-weight: 800;
         }
 
-        .drop-header {
-            margin-bottom: 1.5rem;
+        .drop-content {
+            padding: 2rem;
         }
 
         .drop-tag {
             display: inline-block;
             font-family: var(--font-mono);
             font-size: 0.75rem;
-            color: var(--color-accent);
-            background: rgba(59, 130, 246, 0.1);
             padding: 0.25rem 0.75rem;
             border-radius: 999px;
             margin-bottom: 1rem;
@@ -103,8 +182,23 @@
             letter-spacing: 0.05em;
         }
 
+        .tag-current {
+            background: rgba(34, 197, 94, 0.1);
+            color: #22c55e;
+        }
+
+        .tag-sold {
+            background: rgba(239, 68, 68, 0.1);
+            color: #ef4444;
+        }
+
+        .tag-archive {
+            background: rgba(59, 130, 246, 0.1);
+            color: #3b82f6;
+        }
+
         .drop-title {
-            font-size: 2rem;
+            font-size: 1.5rem;
             font-weight: 700;
             margin-bottom: 0.5rem;
         }
@@ -113,10 +207,11 @@
             font-family: var(--font-mono);
             font-size: 0.85rem;
             color: var(--color-text-muted);
+            margin-bottom: 1rem;
         }
 
         .drop-description {
-            font-size: 1rem;
+            font-size: 0.95rem;
             line-height: 1.7;
             color: var(--color-text-muted);
             margin-bottom: 1.5rem;
@@ -125,70 +220,85 @@
         .drop-stats {
             display: flex;
             gap: 2rem;
-            font-size: 0.9rem;
-            color: var(--color-text-muted);
+            padding-top: 1rem;
+            border-top: 1px solid var(--color-border);
         }
 
         .drop-stat {
             display: flex;
             align-items: center;
             gap: 0.5rem;
+            font-size: 0.875rem;
+            color: var(--color-text-muted);
         }
 
-        .drop-footer {
+        .coming-soon {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: var(--surface-card);
+            border: 1px dashed var(--color-border);
+            border-radius: 16px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .coming-soon-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            margin-top: 1.5rem;
-            padding-top: 1.5rem;
-            border-top: 1px solid var(--color-border);
+            justify-content: center;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(147, 51, 234, 0.1));
+            border-radius: 20px;
         }
 
-        .view-drop-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.75rem 1.5rem;
-            background: white;
-            color: black;
-            border-radius: 999px;
-            font-weight: 600;
-            font-size: 0.9rem;
-            transition: transform 0.3s, box-shadow 0.3s;
+        .coming-soon h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
         }
 
-        .view-drop-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 10px 20px rgba(255, 255, 255, 0.2);
+        .coming-soon p {
+            color: var(--color-text-muted);
+            margin-bottom: 2rem;
         }
 
-        @media (max-width: 768px) {
-            .drop-card {
-                grid-template-columns: 1fr;
-            }
-
-            .drop-image {
-                aspect-ratio: 16/9;
-            }
+        .collection-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 4rem;
         }
 
-        .status-badge {
-            font-family: var(--font-mono);
-            font-size: 0.75rem;
-            padding: 0.4rem 1rem;
-            border-radius: 999px;
+        .stat-card {
+            background: var(--surface-card);
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .stat-card:hover {
+            border-color: var(--color-accent);
+            transform: translateY(-4px);
+        }
+
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #3b82f6, #9333ea);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: var(--color-text-muted);
             text-transform: uppercase;
             letter-spacing: 0.05em;
-        }
-
-        .status-sold-out {
-            background: rgba(239, 68, 68, 0.1);
-            color: #ef4444;
-        }
-
-        .status-available {
-            background: rgba(34, 197, 94, 0.1);
-            color: #22c55e;
         }
     </style>
 </head>
@@ -204,15 +314,15 @@
             <a href="index.html" class="logo"><img src="logo.png" alt="BUNDL" class="logo-img"></a>
 
             <div class="nav-menu">
-                <a href="index.html" class="nav-link">Shop</a>
-                <a href="archive.html" class="nav-link">Archive</a>
+                <a href="index.html" class="nav-link">Portfolio</a>
+                <a href="mtg.html" class="nav-link">MTG Store</a>
                 <a href="links.html" class="nav-link">Links</a>
                 <a href="socials.html" class="nav-link">Socials</a>
                 <a href="about.html" class="nav-link">About</a>
             </div>
 
             <div class="nav-actions">
-                <a href="#" class="nav-link">Account</a>
+                <a href="socials.html" class="nav-link">Connect</a>
             </div>
         </div>
     </header>
@@ -222,118 +332,144 @@
             <div class="hero-bg-accent"></div>
             <div class="hero-content">
                 <h1 class="text-display">The<br>Archive</h1>
-                <p class="text-xl" style="margin-top: 2rem; opacity: 0.8;">Every drop, every story.</p>
+                <p class="text-xl" style="margin-top: 2rem; opacity: 0.8;">History of drops, pulls, and milestones.</p>
             </div>
         </section>
 
         <section class="container">
-            <div class="timeline">
+            <!-- Collection Stats -->
+            <div class="collection-stats">
+                <div class="stat-card">
+                    <div class="stat-value">500+</div>
+                    <div class="stat-label">Cards Sold</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">15</div>
+                    <div class="stat-label">Active Listings</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">50+</div>
+                    <div class="stat-label">Happy Buyers</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">5★</div>
+                    <div class="stat-label">Average Rating</div>
+                </div>
+            </div>
 
-                <!-- Drop 001 - Current -->
+            <!-- Timeline -->
+            <div class="timeline">
+                <!-- Drop 003 - Current -->
                 <div class="timeline-item">
-                    <div class="drop-card">
-                        <div class="drop-image">
-                            <div style="font-family: var(--font-mono); font-size: 3rem; opacity: 0.3;">001</div>
-                        </div>
-                        <div class="drop-content">
-                            <div>
-                                <div class="drop-header">
-                                    <span class="drop-tag">Current Drop</span>
-                                    <h2 class="drop-title">The Drop [001]</h2>
-                                    <div class="drop-date">JANUARY 2026</div>
-                                </div>
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="drop-card">
+                            <div class="drop-image">
+                                <img src="images/mtg_hero.png" alt="Current Drop">
+                            </div>
+                            <div class="drop-content">
+                                <span class="drop-tag tag-current">🔥 Live Now</span>
+                                <h2 class="drop-title">The Big Drop [003]</h2>
+                                <div class="drop-date">JANUARY 2026</div>
                                 <p class="drop-description">
-                                    Our inaugural collection. Six carefully curated pieces from the underground
-                                    archives.
-                                    Featuring vintage outerwear, rare accessories, and timeless staples.
+                                    Our biggest collection yet! 15 premium items including Commander decks,
+                                    booster boxes, rare singles, and accessories.
                                 </p>
                                 <div class="drop-stats">
                                     <div class="drop-stat">
                                         <i data-lucide="package" width="16" height="16"></i>
-                                        <span>6 Items</span>
+                                        <span>15 Items</span>
                                     </div>
                                     <div class="drop-stat">
                                         <i data-lucide="clock" width="16" height="16"></i>
-                                        <span>Live Now</span>
+                                        <span>Live</span>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="drop-footer">
-                                <span class="status-badge status-available">Available</span>
-                                <a href="index.html#shop" class="view-drop-btn">
-                                    View Collection
-                                    <i data-lucide="arrow-right" width="16" height="16"></i>
-                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Future Drops Placeholder -->
+                <!-- Drop 002 -->
                 <div class="timeline-item">
-                    <div class="drop-card">
-                        <div class="drop-image">
-                            <div style="font-family: var(--font-mono); font-size: 3rem; opacity: 0.3;">000</div>
-                        </div>
-                        <div class="drop-content">
-                            <div>
-                                <div class="drop-header">
-                                    <span class="drop-tag">Archive</span>
-                                    <h2 class="drop-title">Pre-Launch Collection</h2>
-                                    <div class="drop-date">DECEMBER 2025</div>
-                                </div>
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="drop-card">
+                            <div class="drop-image">
+                                <img src="images/booster_box.png" alt="Drop 002">
+                            </div>
+                            <div class="drop-content">
+                                <span class="drop-tag tag-sold">Sold Out</span>
+                                <h2 class="drop-title">Commander Collection [002]</h2>
+                                <div class="drop-date">DECEMBER 2025</div>
                                 <p class="drop-description">
-                                    The beta collection that started it all. Limited test run featuring 3 exclusive
-                                    pieces
-                                    for early supporters and community founders.
+                                    Featured 8 premium Commander decks and staple singles.
+                                    Sold out in 48 hours!
                                 </p>
                                 <div class="drop-stats">
                                     <div class="drop-stat">
                                         <i data-lucide="package" width="16" height="16"></i>
-                                        <span>3 Items</span>
+                                        <span>8 Items</span>
                                     </div>
                                     <div class="drop-stat">
-                                        <i data-lucide="users" width="16" height="16"></i>
-                                        <span>Invite Only</span>
+                                        <i data-lucide="check-circle" width="16" height="16"></i>
+                                        <span>100% Sold</span>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="drop-footer">
-                                <span class="status-badge status-sold-out">Sold Out</span>
-                                <a href="#" class="view-drop-btn" style="opacity: 0.5; pointer-events: none;">
-                                    Archived
-                                    <i data-lucide="archive" width="16" height="16"></i>
-                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Coming Soon -->
-                <div style="text-align: center; padding: 4rem 0;">
-                    <div
-                        style="width: 64px; height: 64px; margin: 0 auto 1.5rem; display: flex; align-items: center; justify-content: center; background: rgba(59, 130, 246, 0.1); border-radius: 12px;">
-                        <i data-lucide="sparkles" width="32" height="32"></i>
+                <!-- Drop 001 -->
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="drop-card">
+                            <div class="drop-image">
+                                <img src="images/commander_deck.png" alt="Drop 001">
+                            </div>
+                            <div class="drop-content">
+                                <span class="drop-tag tag-archive">Archive</span>
+                                <h2 class="drop-title">The First Drop [001]</h2>
+                                <div class="drop-date">NOVEMBER 2025</div>
+                                <p class="drop-description">
+                                    Where it all began. Our inaugural collection with 5 carefully
+                                    selected items for early supporters.
+                                </p>
+                                <div class="drop-stats">
+                                    <div class="drop-stat">
+                                        <i data-lucide="package" width="16" height="16"></i>
+                                        <span>5 Items</span>
+                                    </div>
+                                    <div class="drop-stat">
+                                        <i data-lucide="star" width="16" height="16"></i>
+                                        <span>Legendary</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <h3 class="text-xl" style="margin-bottom: 1rem;">More Coming Soon</h3>
-                    <p style="color: var(--color-text-muted); max-width: 500px; margin: 0 auto;">
-                        Stay tuned for upcoming drops. Follow us on social media for early access and exclusive
-                        previews.
-                    </p>
-                    <a href="socials.html" class="btn-primary" style="margin-top: 2rem;">
-                        Stay Updated
-                    </a>
                 </div>
+            </div>
 
+            <!-- Coming Soon -->
+            <div class="coming-soon">
+                <div class="coming-soon-icon">
+                    <i data-lucide="sparkles" width="40" height="40"></i>
+                </div>
+                <h3>More Drops Coming</h3>
+                <p>Stay tuned for upcoming collections. Follow us on social media for early access and sneak peeks.</p>
+                <a href="socials.html" class="btn-primary">Stay Updated</a>
             </div>
         </section>
     </main>
 
-    <footer style="border-top: 1px solid var(--color-border); padding: 80px 0;">
+    <footer style="border-top: 1px solid var(--color-border); padding: 80px 0; margin-top: 80px;">
         <div class="container" style="text-align: center;">
             <div style="display: flex; justify-content: center; gap: 2rem; margin-bottom: 2rem; flex-wrap: wrap;">
-                <a href="index.html" class="nav-link">Shop</a>
-                <a href="archive.html" class="nav-link">Archive</a>
+                <a href="index.html" class="nav-link">Portfolio</a>
+                <a href="mtg.html" class="nav-link">MTG Store</a>
                 <a href="links.html" class="nav-link">Links</a>
                 <a href="socials.html" class="nav-link">Socials</a>
                 <a href="about.html" class="nav-link">About</a>
