@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Decklists | BUNDL</title>
+    <meta name="description"
+        content="Explore curated Magic: The Gathering decklists for Commander, Modern, Standard, and more formats.">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <a href="index.html" class="logo">BUNDL</a>
+            <nav class="nav-menu">
+                <a href="index.html">Portfolio</a>
+                <a href="mtg.html">MTG Store</a>
+                <a href="decklists.html" class="active">Decklists</a>
+                <a href="links.html">Links</a>
+                <a href="socials.html">Socials</a>
+                <a href="about.html">About</a>
+            </nav>
+            <button class="mobile-menu-btn" aria-label="Toggle menu">
+                <i data-lucide="menu"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" style="padding: 120px 0 80px;">
+        <div class="container" style="text-align: center;">
+            <div
+                style="display: inline-flex; align-items: center; gap: 12px; background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(147, 51, 234, 0.1)); padding: 8px 20px; border-radius: 50px; border: 1px solid rgba(59, 130, 246, 0.2); margin-bottom: 24px;">
+                <i data-lucide="layers" style="width: 16px; height: 16px; color: #3b82f6;"></i>
+                <span style="font-size: 0.875rem; font-weight: 500; color: #3b82f6;">CURATED DECKS</span>
+            </div>
+            <h1
+                style="font-size: 4rem; font-weight: 700; margin-bottom: 24px; background: linear-gradient(135deg, #fff, #3b82f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+                Decklists
+            </h1>
+            <p style="font-size: 1.25rem; color: rgba(255,255,255,0.6); max-width: 600px; margin: 0 auto 40px;">
+                Battle-tested decks for every format. From competitive Commander to casual kitchen table magic.
+            </p>
+
+            <!-- Stats -->
+            <div
+                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 24px; max-width: 600px; margin: 0 auto;">
+                <div style="text-align: center;">
+                    <div style="font-size: 2rem; font-weight: 700; color: #3b82f6; margin-bottom: 4px;">24</div>
+                    <div style="font-size: 0.875rem; color: rgba(255,255,255,0.5);">Total Decks</div>
+                </div>
+                <div style="text-align: center;">
+                    <div style="font-size: 2rem; font-weight: 700; color: #8b5cf6; margin-bottom: 4px;">8</div>
+                    <div style="font-size: 0.875rem; color: rgba(255,255,255,0.5);">Formats</div>
+                </div>
+                <div style="text-align: center;">
+                    <div style="font-size: 2rem; font-weight: 700; color: #ec4899; margin-bottom: 4px;">2.4K</div>
+                    <div style="font-size: 0.875rem; color: rgba(255,255,255,0.5);">Cards Total</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Filters Section -->
+    <section style="padding: 40px 0;">
+        <div class="container">
+            <div
+                style="display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; align-items: center; margin-bottom: 32px;">
+                <!-- Format Filter -->
+                <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+                    <button class="format-filter active" data-format="all"
+                        style="padding: 10px 20px; background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.3); border-radius: 8px; color: #3b82f6; cursor: pointer; font-weight: 500; transition: all 0.3s;">
+                        All Formats
+                    </button>
+                    <button class="format-filter" data-format="commander"
+                        style="padding: 10px 20px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: rgba(255,255,255,0.6); cursor: pointer; font-weight: 500; transition: all 0.3s;">
+                        Commander
+                    </button>
+                    <button class="format-filter" data-format="modern"
+                        style="padding: 10px 20px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: rgba(255,255,255,0.6); cursor: pointer; font-weight: 500; transition: all 0.3s;">
+                        Modern
+                    </button>
+                    <button class="format-filter" data-format="standard"
+                        style="padding: 10px 20px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: rgba(255,255,255,0.6); cursor: pointer; font-weight: 500; transition: all 0.3s;">
+                        Standard
+                    </button>
+                    <button class="format-filter" data-format="pioneer"
+                        style="padding: 10px 20px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: rgba(255,255,255,0.6); cursor: pointer; font-weight: 500; transition: all 0.3s;">
+                        Pioneer
+                    </button>
+                </div>
+
+                <!-- Search -->
+                <div style="position: relative; min-width: 240px;">
+                    <i data-lucide="search"
+                        style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); width: 18px; height: 18px; color: rgba(255,255,255,0.4);"></i>
+                    <input type="text" id="deck-search" placeholder="Search decks..."
+                        style="width: 100%; padding: 10px 16px 10px 40px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: white; font-size: 0.875rem;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Decks Grid -->
+    <section style="padding: 0 0 80px;">
+        <div class="container">
+            <div id="decks-grid"
+                style="display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 24px;">
+                <!-- Decks will be injected here by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Deck Details Modal -->
+    <div id="deck-modal" class="modal">
+        <div class="modal-content" style="max-width: 900px; max-height: 90vh; overflow-y: auto;">
+            <button class="modal-close">&times;</button>
+            <div id="deck-details">
+                <!-- Deck details will be injected here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer
+        style="background: rgba(255,255,255,0.02); border-top: 1px solid rgba(255,255,255,0.05); padding: 60px 0 30px;">
+        <div class="container">
+            <div
+                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; margin-bottom: 40px;">
+                <div>
+                    <h3 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 16px;">BUNDL</h3>
+                    <p style="color: rgba(255,255,255,0.5); font-size: 0.875rem;">Your destination for curated Magic:
+                        The Gathering content and premium cards.</p>
+                </div>
+                <div>
+                    <h4
+                        style="font-size: 0.875rem; font-weight: 600; margin-bottom: 16px; color: rgba(255,255,255,0.6);">
+                        QUICK LINKS</h4>
+                    <div style="display: flex; flex-direction: column; gap: 8px;">
+                        <a href="index.html"
+                            style="color: rgba(255,255,255,0.5); font-size: 0.875rem; text-decoration: none; transition: color 0.3s;">Portfolio</a>
+                        <a href="mtg.html"
+                            style="color: rgba(255,255,255,0.5); font-size: 0.875rem; text-decoration: none; transition: color 0.3s;">MTG
+                            Store</a>
+                        <a href="guides.html"
+                            style="color: rgba(255,255,255,0.5); font-size: 0.875rem; text-decoration: none; transition: color 0.3s;">Guides</a>
+                        <a href="archive.html"
+                            style="color: rgba(255,255,255,0.5); font-size: 0.875rem; text-decoration: none; transition: color 0.3s;">Archive</a>
+                    </div>
+                </div>
+                <div>
+                    <h4
+                        style="font-size: 0.875rem; font-weight: 600; margin-bottom: 16px; color: rgba(255,255,255,0.6);">
+                        CONNECT</h4>
+                    <div style="display: flex; flex-direction: column; gap: 8px;">
+                        <a href="socials.html"
+                            style="color: rgba(255,255,255,0.5); font-size: 0.875rem; text-decoration: none; transition: color 0.3s;">Social
+                            Media</a>
+                        <a href="links.html"
+                            style="color: rgba(255,255,255,0.5); font-size: 0.875rem; text-decoration: none; transition: color 0.3s;">Resources</a>
+                        <a href="about.html"
+                            style="color: rgba(255,255,255,0.5); font-size: 0.875rem; text-decoration: none; transition: color 0.3s;">About</a>
+                    </div>
+                </div>
+            </div>
+            <div
+                style="padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.05); text-align: center; color: rgba(255,255,255,0.4); font-size: 0.875rem;">
+                <p>&copy; 2026 BUNDL. Curating magic since 2024.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="decklists-app.js"></script>
+    <script>lucide.createIcons();</script>
+</body>
+
+</html>
